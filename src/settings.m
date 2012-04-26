@@ -4,12 +4,7 @@ addpath('../lib/miditoolbox')
 trainSamplePath = '../audio/human_played_midi/KV310/';
 trainSampleName= 'sampleList.txt';
 
-%numOfSamples = 3;
-%%samplePath = '/home/a108210/Dropbox/Courses/project/build/audio/human_played_midi/KV310/';
-%samplePath = '../audio/human_played_midi/KV310/';
-%trainList = { };
-%for i = 1:numOfSamples
-%   fname = sprintf('phrase%03i.mid', i);
-%   trainList{end+1}= [samplePath fname];
-%end
 
+%choose analyze components
+doPosInPhrase = 1;
+doTimeBias =    1;
