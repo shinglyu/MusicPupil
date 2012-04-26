@@ -1,15 +1,8 @@
 addpath('../lib/miditoolbox')
 %list of training samples
 %create a txt file containing all training sample filenames 
-samplePath = '../audio/human_played_midi/KV310/';
-fid = fopen([samplePath 'sampleList.txt']);
-fname = fgetl(fid);
-trainList = { };
-while ischar(fname)
-   trainList{end+1}= [samplePath fname];
-   fname = fgetl(fid);
-   %disp(fname);
-end
+trainSamplePath = '../audio/human_played_midi/KV310/';
+trainSampleName= 'sampleList.txt';
 
 %numOfSamples = 3;
 %%samplePath = '/home/a108210/Dropbox/Courses/project/build/audio/human_played_midi/KV310/';

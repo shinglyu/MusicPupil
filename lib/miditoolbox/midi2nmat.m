@@ -580,7 +580,7 @@ if (nargin<2)
 end
 
 filename
-fid = fopen(filename)
+fid = fopen(filename);
 %[A count] = fread(fid,'char');
 [A count] = fread(fid,'uint8');
 fclose(fid);
