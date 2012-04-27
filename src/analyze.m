@@ -9,22 +9,23 @@ trainScores = quantizeAll(trainMelodies);
 
 disp('Analyzing Note Features...')
 features = [];
-featureNames = {};
 if doPosInPhrase
    posInPhrase= getPosInPhrase(trainScores);
+   features  = collectFeatures(posInPhrase, features);
    %features = [features posInPhrase]; %errors here, posInPhrase is a cell
-   featureNames{end+1}= 'posInPhrase';
+%   featureNames{end+1}= 'posInPhrase';
 end
    
 
 
 disp('Analyzing Performances...')
-performs = [];
-performNames = {};
+performances = [];
 if doTimeBias
    timeBias = getTimeBias(trainMelodies, trainScores);
-   performs= [performs timeBias];
-   performNames{end+1}= 'timeBias';
+   performances  = collectFeatures(timeBias,  performances);
+   performances  = collectFeatures(timeBias,  performances);
+   %performs= [performs timeBias];
+   %performNames{end+1}= 'timeBias';
 %loudness
 end
 
@@ -32,7 +33,7 @@ end
 %proof of concept, will be refactor to modeling.m
 %scatter(posInPhrase{1}, timeBias{ 1 }) ;
 
-save('analyzeOutput.mat', 'features', 'featureNames', 'performs', 'performNames')
+save('analyzeOutput.mat', 'features',  'performances' )
 disp('DONE')
 
 
