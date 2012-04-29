@@ -8,3 +8,6 @@ trainSampleName= 'sampleList.txt';
 %choose analyze components
 doPosInPhrase = 1;
 doTimeBias =    1;
+
+%modeling
+visualize =     1;

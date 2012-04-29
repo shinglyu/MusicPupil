@@ -10,6 +10,6 @@ function features = collectFeatures(newFeatCell, features )
    for i = 1:length(newFeatCell)
       tmpFeat= [tmpFeat; newFeatCell{i}];
    end
-   features = [features tmpFeat]
+   features = [features tmpFeat];
 
 end

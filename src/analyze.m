@@ -23,7 +23,7 @@ performances = [];
 if doTimeBias
    timeBias = getTimeBias(trainMelodies, trainScores);
    performances  = collectFeatures(timeBias,  performances);
-   performances  = collectFeatures(timeBias,  performances);
+   %performances  = collectFeatures(timeBias,  performances);
    %performs= [performs timeBias];
    %performNames{end+1}= 'timeBias';
 %loudness

@@ -1,4 +1,7 @@
 %create models
-load('analyzeOutput.mat');
+load('analyzeOutput.mat'); %features, performances
 
-model
+param = regressionModel(features, performances);
+
+save('modelParams.mat', 'param')
+
