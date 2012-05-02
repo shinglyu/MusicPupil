@@ -1,7 +1,7 @@
 %read midis from fname txt file list 
 %output cell array of nmats
 function nmats = readMidis(path, fname)
-   fid = fopen([path fname]);
+   fid = fopen([path fname '.txt']);
    line= fgetl(fid);
    trainList = { };
    while ischar(line)
