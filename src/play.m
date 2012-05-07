@@ -1,15 +1,12 @@
 %generate expressive performance from model
-load('modelParams.mat');
-
-origScores= readMidis(playPath, playName);
-
-if doPosInPhrase
-   posInPhrase= getPosInPhrase(origScores);
-   features{end+1}  = posInPhrase;
-end
+load('modelParam.mat'); %modelParam
+load('play.mat'); %features
+scores = readMidis(midiPath, 'play');
 
 if useRegression
-   exprScores = playRegression(origScores, param, features);
+   exprScores = playRegression(scores, modelParam, features);
+else
+   exprScores = scores;
 end
    
-writeMidis(expPerforms);
+writeMidis(exprScores);

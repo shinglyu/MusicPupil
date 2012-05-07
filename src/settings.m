@@ -2,6 +2,7 @@ addpath('../lib/miditoolbox')
 %list of training samples
 %create a txt file containing all training sample filenames 
 midiPath= '../audio/human_played_midi/KV310/';
+outPath = '../out/';
 %trainSampleName= 'sampleList.txt';
 
 
@@ -11,7 +12,7 @@ useFeature(1) = 1; %doPosInPhrase = 1;
 usePerform(1) = 1; %%doTimeBias =    1;
 
 %choose modeling method
-useRegression = 1;
+useRegression = 0;
 
 %modeling
-visualize =     1;
+visualize =     0;

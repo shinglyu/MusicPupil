@@ -1,12 +1,14 @@
 %create models
+settings
 load('sample.mat'); %features, performances
 
+disp('Modeling...')
 concatedFeats = concatinateFeatures(features);
 concatedPerforms = concatinateFeatures(performParams);
 
 if useRegression
-   param = modelRegression(concatedFeats, concatedPerforms);
+   modelParam = modelRegression(concatedFeats, concatedPerforms);
 end
 
-save('modelParams.mat', 'param')
-
+save('modelParam.mat', 'modelParam')
+disp('DONE')
