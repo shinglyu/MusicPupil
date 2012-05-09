@@ -10,6 +10,7 @@ end
 if useRegression
    exprScores = playRegression(scores, modelParam, features);
 else
+   warning('No model applied');
    exprScores = scores;
 end
    

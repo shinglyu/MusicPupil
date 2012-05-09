@@ -4,6 +4,11 @@ function outScores = applyTimeBias(inScores, performParam);
       %disp(size(inScores{scoreNo}(:,6)));
       %disp(size(performParam{scoreNo}));
       inScores{scoreNo}(:,6) = inScores{scoreNo}(:,6) + performParam{scoreNo};
+     % inScores{scoreNo}(:,6) = inScores{scoreNo}(:,6) + 10*performParam{scoreNo};
+      %inScores{scoreNo}(:,1) = inScores{scoreNo}(:,1) + performParam{scoreNo};
+
+      %inScores{scoreNo}(:,1) = inScores{scoreNo}(:,1) + rand(size(inScores{scoreNo}(:,1)))*3;
+      %inScores{scoreNo}(:,6) = inScores{scoreNo}(:,6) + rand(size(inScores{scoreNo}(:,6)))*3;
    end
    outScores = inScores;
 end

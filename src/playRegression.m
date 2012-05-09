@@ -19,5 +19,5 @@ function exprScores = playRegression(scores, param, features);
          warning(sprintf('currFeat %d is not a valid feature number', currFeat));
       end
    end
-   exprScores = scores
+   exprScores = scores;
 end

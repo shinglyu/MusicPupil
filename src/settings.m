@@ -13,6 +13,7 @@ useFeature(1) = 1; %doPosInPhrase = 1;
 %choose performance param modules
 usePerform(1) = 1; %%doTimeBias =    1;
 
+
 %choose modeling method
 useRegression = 1;
 
