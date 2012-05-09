@@ -8,6 +8,8 @@ concatedPerforms = concatinateFeatures(performParams);
 
 if useRegression
    modelParam = modelRegression(concatedFeats, concatedPerforms);
+else
+   warning('No modeling method selected!');
 end
 
 save('modelParam.mat', 'modelParam')

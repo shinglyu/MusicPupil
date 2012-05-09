@@ -7,7 +7,9 @@ function analyze(setName)
    disp('Reading Midis...')
    trainSamples = readMidis(midiPath, setName);
    disp('Preprocessing Midis...')
-   trainMelodies= getMelodies(trainSamples);
+   if melodyOnly
+      trainMelodies= getMelodies(trainSamples);
+   end
    trainScores = quantizeAll(trainMelodies);
 
 
