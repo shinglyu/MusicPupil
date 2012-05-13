@@ -12,12 +12,13 @@ melodyOnly =    1;
 useFeature(1) = 1; %doPosInPhrase = 1;
 %choose performance param modules
 usePerform(1) = 1; %%doTimeBias =    1;
+usePerform(2) = 1; %%doLoudness=    1;
 
 
 %choose modeling method
 useRegression = 1;
 
 %modeling
-visualize =     0;
+visualize =     1;
 
 defaultTempo = 30;

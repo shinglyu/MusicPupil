@@ -15,13 +15,22 @@ function analyze(setName)
 
    disp('Analyzing Note Features...')
    features = {};
-   if useFeature(1)
-      posInPhrase= getPosInPhrase(trainScores);
-      features{end +1 }  = posInPhrase
-      %features  = collectFeatures(posInPhrase, features);
-      %features = [features posInPhrase]; %errors here, posInPhrase is a cell
-   %   featureNames{end+1}= 'posInPhrase';
+   featNo= NextUsedFeat;
+   %TODO currFeatorm= 0;
+   featNo.getNext;
+   while ~featNo.isEnd
+      feature= getFeat(featNo.currFeat, trainMelodies, trainScores)
+      features{end +1 }= feature;
+
+      featNo.getNext;
    end
+%   if useFeature(1)
+%      posInPhrase= getPosInPhrase(trainScores);
+%      features{end +1 }  = posInPhrase
+%      %features  = collectFeatures(posInPhrase, features);
+%      %features = [features posInPhrase]; %errors here, posInPhrase is a cell
+%   %   featureNames{end+1}= 'posInPhrase';
+%   end
       
 
 
@@ -30,15 +39,35 @@ function analyze(setName)
    if strcmp(setName, 'play')
       %do nothing
    else
-      if usePerform(1)
-         timeBias = getTimeBias(trainMelodies, trainScores);
-         performParams {end +1 }= timeBias;
-         %performParams= collectFeatures(timeBias,  performances);
-         %performances  = collectFeatures(timeBias,  performances);
-         %performs= [performs timeBias];
-         %performNames{end+1}= 'timeBias';
-      %loudness
+      perfNo= NextUsedPerf;
+      %TODO currPerform= 0;
+      perfNo.getNext;
+      while ~perfNo.isEnd
+         perfParam = getPerform(perfNo.currPerf, trainMelodies, trainScores)
+         performParams {end +1 }= perfParam;
+
+         perfNo.getNext;
       end
+
+
+%      if usePerform(1)
+%         timeBias = getTimeBias(trainMelodies, trainScores);
+%         performParams {end +1 }= timeBias;
+%         %performParams= collectFeatures(timeBias,  performances);
+%         %performances  = collectFeatures(timeBias,  performances);
+%         %performs= [performs timeBias];
+%         %performNames{end+1}= 'timeBias';
+%      %loudness
+%      end
+%      if usePerform(2)
+%         loudness = getLoudness(trainMelodies, trainScores);
+%         performParams {end +1 }= loudness;
+%         %performParams= collectFeatures(timeBias,  performances);
+%         %performances  = collectFeatures(timeBias,  performances);
+%         %performs= [performs timeBias];
+%         %performNames{end+1}= 'timeBias';
+%      %loudness
+%      end
    end
 
 
