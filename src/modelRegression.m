@@ -21,6 +21,9 @@ function param = modelRegression(features, performances)
          %tmpPerform = polyval(param{i},features(:,1) );
          %plot(features(:,1), performances(:,i), 'o', features(:,1), tmpPerform, '-');
          plot(features(:,1), performances(:,i), 'o', orderFeat, tmpPerform, '-');
+         xlabel(['Feature'])
+         ylabel(['Performance Param'])
+
          %plot(orderFeat, tmpPerform, '-');
       end 
    end

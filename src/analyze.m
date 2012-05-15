@@ -19,7 +19,10 @@ function analyze(setName)
    %TODO currFeatorm= 0;
    featNo.getNext;
    while ~featNo.isEnd
-      feature= getFeat(featNo.currFeat, trainMelodies, trainScores)
+      %if debug_mode
+      %   disp(featNo.currFeat);
+      %end
+      feature= getFeat(featNo.currFeat, trainScores)
       features{end +1 }= feature;
 
       featNo.getNext;
@@ -43,7 +46,7 @@ function analyze(setName)
       %TODO currPerform= 0;
       perfNo.getNext;
       while ~perfNo.isEnd
-         perfParam = getPerform(perfNo.currPerf, trainMelodies, trainScores)
+         perfParam = getPerform(perfNo.currPerf, trainMelodies, trainScores);
          performParams {end +1 }= perfParam;
 
          perfNo.getNext;
