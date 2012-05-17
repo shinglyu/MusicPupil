@@ -1,4 +1,7 @@
 addpath('../lib/miditoolbox')
+addpath('../lib/midirw_java')
+addpath('./features')
+addpath('./performs')
 debug_mode =    1;
 %list of training samples
 %create a txt file containing all training sample filenames 
@@ -12,12 +15,12 @@ melodyOnly =    1;
 %choose feature analyze modules
 useFeature(1) = 0; %doPosInPhrase = 1;
 useFeature(2) = 0; %doPitch= 1;
-useFeature(3) = 0; %doRelativePitch= 1;
-useFeature(4) = 1; %ScoreDuration= 1;
+useFeature(3) = 1; %doRelativePitch= 1;
+useFeature(4) = 0; %ScoreDuration= 1;
 %choose performance param modules
-usePerform(1) = 0; %%doTimeBias =    1;
+usePerform(1) = 1; %%doTimeBias =    1;
 usePerform(2) = 0; %%doLoudness=    1;
-usePerform(3) = 1; %%doRealDuration=    1;
+usePerform(3) = 0; %%doRealDuration=    1;
 
 
 %choose modeling method

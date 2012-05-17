@@ -7,6 +7,8 @@ if melodyOnly
    writeMidis(scores, 'orig_')
 end
 
+%concatedFeats = concatinateFeatures(features);
+
 if useRegression
    exprScores = playRegression(scores, modelParam, features);
 else

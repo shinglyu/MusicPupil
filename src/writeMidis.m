@@ -15,7 +15,9 @@ function writeMidis(exprScores, prefix)
    for i = 1: size(namelist,2)
       disp( namelist{i} );
       %nmats{ end +1 }= readmidi(trainList(i)); %mex version
-      nmats{ end +1 }= nmat2midi(exprScores{i}, namelist{i}, defaultTempo);%no mex version
+      %nmats{ end +1 }= nmat2midi(exprScores{i}, namelist{i}, defaultTempo);%no mex version
+      %nmat2midi(exprScores{i}, namelist{i}, defaultTempo);%no mex version
+      writemidi_java(exprScores{i}, namelist{i}, defaultTempo);%no mex version
    end
    %system('cd ../out; sh midi2wav.sh')%convert midi to wave
 

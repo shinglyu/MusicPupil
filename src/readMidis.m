@@ -13,7 +13,8 @@ function nmats = readMidis(path, fname)
    for i = 1: size(trainList,2)
       disp( trainList{i} );
       %nmats{ end +1 }= readmidi(trainList(i)); %mex version
-      nmats{ end +1 }= midi2nmat(trainList{i});%no mex version
+      %nmats{ end +1 }= midi2nmat(trainList{i});%no mex version
+      nmats{ end +1 }= readmidi_java(trainList{i});%no mex version
    end
 
 end
