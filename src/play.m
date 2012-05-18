@@ -2,10 +2,10 @@
 load('modelParam.mat'); %modelParam
 load('play.mat'); %features
 scores = readMidis(midiPath, 'play');
-if melodyOnly
+if playMelodyOnly
    scores = getMelodies(scores);
-   writeMidis(scores, 'orig_')
 end
+   writeMidis(scores, 'orig_')
 
 %concatedFeats = concatinateFeatures(features);
 

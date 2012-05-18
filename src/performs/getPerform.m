@@ -5,6 +5,8 @@ function performParam= getPerform(performNo, samples, scores);
       performParam = getLoudness(samples);
    elseif performNo == 3
       performParam = getRealDuration(samples, scores);
+   elseif performNo == 4
+      performParam = getRelaTimeBias(samples, scores);
    else
       warning('No such performance parameter!')
    end

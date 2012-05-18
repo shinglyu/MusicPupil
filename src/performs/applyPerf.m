@@ -5,6 +5,8 @@ function outScores= applyPerf(performNo, inScores, performParam)
       outScores = applyLoudness(inScores, performParam);
    elseif performNo == 3
       outScores = applyRealDuration(inScores, performParam);
+   elseif performNo == 4
+      outScores = applyRelaTimeBias(inScores, performParam);
    else
       warning('No such performance parameter!')
    end

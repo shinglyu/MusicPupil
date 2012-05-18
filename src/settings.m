@@ -10,17 +10,19 @@ midiPath= '../data/';
 outPath = '../out/';
 %trainSampleName= 'sampleList.txt';
 
-melodyOnly =    1;
+melodyOnly= 1;
+playMelodyOnly = 1;
 
 %choose feature analyze modules
-useFeature(1) = 0; %doPosInPhrase = 1;
-useFeature(2) = 0; %doPitch= 1;
+useFeature(1) = 1; %doPosInPhrase = 1;
+useFeature(2) = 1; %doPitch= 1;
 useFeature(3) = 1; %doRelativePitch= 1;
-useFeature(4) = 0; %ScoreDuration= 1;
+useFeature(4) = 1; %ScoreDuration= 1;
 %choose performance param modules
-usePerform(1) = 1; %%doTimeBias =    1;
-usePerform(2) = 0; %%doLoudness=    1;
-usePerform(3) = 0; %%doRealDuration=    1;
+usePerform(1) = 0; %%doTimeBias =    1;
+usePerform(2) = 1; %%doLoudness=    1;
+usePerform(3) = 1; %%doRealDuration=    1;
+usePerform(4) = 1; %%relaTimeBias=    1;
 
 
 %choose modeling method
