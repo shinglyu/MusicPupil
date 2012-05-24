@@ -2,7 +2,6 @@
 %output cell array of nmats
 function nmats = readMidisFromList(list)
    settings
-   fnames = list;
    nmats = {};
    for fno = 1:length(list)
       %fid = fopen([midiPath list(fno)]);

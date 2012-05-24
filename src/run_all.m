@@ -4,7 +4,7 @@ getTrainingSet;
 playList = getFileList('play');
 playFeats = analyze('play');
 
-fprinf('\n')
+fprintf('\n')
 for fno = 1:length(playList)
    infoline = ['=====' playList{fno}];
    for i = 1:(50-length(infoline)) infoline = [infoline '=']; end
