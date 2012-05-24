@@ -9,16 +9,16 @@ function exprScores = playRegression(scores, param, features);
       for perfNo= 1:size(param,2)
          performParam = {};
          realPerfNo.getNext;
-         if debug_mode
-            disp(realPerfNo.currPerf)
-         end
+%         if debug_mode
+%            disp(realPerfNo.currPerf)
+%         end
          for scoreNo = 1: length(features{featNo}) %num of scores
             %for featNo  = 1: length(features)
                %evaluate performance parameters
             performParam{end +1 }= polyval(param{featNo, perfNo},features{featNo}{scoreNo});
-            if debug_mode
-               disp(performParam{end})
-            end
+%            if debug_mode
+%               disp(performParam{end})
+%            end
                %apply parameter to score
    %         currFeat = getNextUsedFeat(currFeat);
             %assert(featNo == length(features), 'Features matrix reached the end before all features are evaluated');

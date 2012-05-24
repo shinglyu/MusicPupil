@@ -1,19 +1,28 @@
 %generate expressive performance from model
-load('modelParam.mat'); %modelParam
-load('play.mat'); %features
-scores = readMidis(midiPath, 'play');
-if playMelodyOnly
-   scores = getMelodies(scores);
-end
-   writeMidis(scores, 'orig_')
+function play(modelParam, features)
+   settings
+   fprintf('Playing phrase...');
+   %load('modelParam.mat'); %modelParam
+   %load('play.mat'); %features
 
-%concatedFeats = concatinateFeatures(features);
+   list = getFileList('play');
+   scores = readMidisFromList(list);
+   %scores = readMidis(midiPath, 'play');
+   if playMelodyOnly
+      scores = getMelodies(scores);
+   end
+      writeMidis(scores, 'orig_');
 
-if useRegression
-   exprScores = playRegression(scores, modelParam, features);
-else
-   warning('No model applied');
-   exprScores = scores;
+   %concatedFeats = concatinateFeatures(features);
+
+   if useRegression
+      exprScores = playRegression(scores, modelParam, features);
+   else
+      warning('No model applied');
+      exprScores = scores;
+   end
+      
+   writeMidis(exprScores, 'expr_');
+   disp('')
+   disp('DONE')
 end
-   
-writeMidis(exprScores, 'expr_');

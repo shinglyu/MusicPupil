@@ -13,7 +13,7 @@ function writeMidis(exprScores, prefix)
    end
    nmats = { };
    for i = 1: size(namelist,2)
-      disp( namelist{i} );
+      %disp( namelist{i} );
       %nmats{ end +1 }= readmidi(trainList(i)); %mex version
       %nmats{ end +1 }= nmat2midi(exprScores{i}, namelist{i}, defaultTempo);%no mex version
       %nmat2midi(exprScores{i}, namelist{i}, defaultTempo);%no mex version

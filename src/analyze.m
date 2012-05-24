@@ -1,19 +1,22 @@
 %analyze features and performance parameters for the given score set
 %performance parameter will not be analyzed for the 'play' set
 
-function analyze(setName)
+function [features, performParams] = analyze(setName)
    settings
 
-   disp('Reading Midis...')
-   trainSamples = readMidis(midiPath, setName);
-   disp('Preprocessing Midis...')
+   %disp('Reading Midis...')
+   list = getFileList(setName);
+   nmats = readMidisFromList(list);
+
+   %nmats = readMidis(midiPath, setName);
+   %disp('Preprocessing Midis...')
    if melodyOnly
-      trainMelodies= getMelodies(trainSamples);
+      trainMelodies= getMelodies(nmats);
    end
    trainScores = quantizeAll(trainMelodies);
 
 
-   disp('Analyzing Note Features...')
+   fprintf('Analyzing Note Features...')
    features = {};
    featNo= NextUsedFeat;
    %TODO currFeatorm= 0;
@@ -22,7 +25,7 @@ function analyze(setName)
       %if debug_mode
       %   disp(featNo.currFeat);
       %end
-      feature= getFeat(featNo.currFeat, trainScores)
+      feature= getFeat(featNo.currFeat, trainScores);
       features{end +1 }= feature;
 
       featNo.getNext;
@@ -37,7 +40,7 @@ function analyze(setName)
       
 
 
-   disp('Analyzing Performances...')
+   fprintf('Analyzing Performances...')
    performParams  = {};
    if strcmp(setName, 'play')
       %do nothing
@@ -76,9 +79,9 @@ function analyze(setName)
 
    %proof of concept, will be refactor to modeling.m
    %scatter(posInPhrase{1}, timeBias{ 1 }) ;
-   outFname = [setName '.mat'];
-   save(outFname, 'features',  'performParams' )
-   disp(['File ' outFname ' saved.']);
+   %outFname = [setName '.mat'];
+   %save(outFname, 'features',  'performParams' )
+   %disp(['File ' outFname ' saved.']);
    disp('DONE')
 
 end

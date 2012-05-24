@@ -7,6 +7,10 @@ function feature = getFeat(featNo, scores);
       feature = getRelaPitch(scores);
    elseif featNo == 4
       feature = getScoreDuration(scores);
+   elseif featNo == 5
+      feature = getPitchDiffPrev(scores);
+   elseif featNo == 6
+      feature = getPitchDiffNext(scores);
    else
       warning('No such feature!')
    end
