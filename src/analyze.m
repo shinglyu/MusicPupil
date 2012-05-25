@@ -30,15 +30,6 @@ function [features, performParams] = analyze(setName)
 
       featNo.getNext;
    end
-%   if useFeature(1)
-%      posInPhrase= getPosInPhrase(trainScores);
-%      features{end +1 }  = posInPhrase
-%      %features  = collectFeatures(posInPhrase, features);
-%      %features = [features posInPhrase]; %errors here, posInPhrase is a cell
-%   %   featureNames{end+1}= 'posInPhrase';
-%   end
-      
-
 
    fprintf('Analyzing Performances...')
    performParams  = {};
@@ -54,28 +45,20 @@ function [features, performParams] = analyze(setName)
 
          perfNo.getNext;
       end
-
-
-%      if usePerform(1)
-%         timeBias = getTimeBias(trainMelodies, trainScores);
-%         performParams {end +1 }= timeBias;
-%         %performParams= collectFeatures(timeBias,  performances);
-%         %performances  = collectFeatures(timeBias,  performances);
-%         %performs= [performs timeBias];
-%         %performNames{end+1}= 'timeBias';
-%      %loudness
-%      end
-%      if usePerform(2)
-%         loudness = getLoudness(trainMelodies, trainScores);
-%         performParams {end +1 }= loudness;
-%         %performParams= collectFeatures(timeBias,  performances);
-%         %performances  = collectFeatures(timeBias,  performances);
-%         %performs= [performs timeBias];
-%         %performNames{end+1}= 'timeBias';
-%      %loudness
-%      end
    end
 
+   feature = {};
+   performParam = {};
+   for fno = 1:length(list)
+      fname = [list{fno} '.ana.mat'];
+      for featNo = 1:length(features)
+         feature{featNo} = features{featNo}{fno};
+      end
+      for perfNo = 1:length(performParams)
+         performParam{perfNo} = performParams{perfNo}{fno};
+      end
+      save(fname, 'feature', 'performParam')
+   end
 
    %proof of concept, will be refactor to modeling.m
    %scatter(posInPhrase{1}, timeBias{ 1 }) ;

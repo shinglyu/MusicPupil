@@ -1,0 +1,21 @@
+function [features, performParams] = analyzeOrLoad(setName)
+   list = getFileList(setName);
+   features = {};
+   performParams = {};
+   for fno = 1:length(list)
+      fname = [list{fno} '.ana.mat'];
+      if exist(fname) 
+         score = load(fname);
+         for featNo = 1:length(score.feature)
+            features{featNo}{end +1} = score.feature{featNo}{fno};
+         end
+         for perfNo = 1:length(score.performParam)
+            performParams{featNo}{end +1} = score.performParam{featNo}{fno};
+         end
+      else
+         analyze(setName);
+         break;
+      end
+   end
+
+

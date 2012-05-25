@@ -1,8 +1,10 @@
 settings
-system('sh ../clean.sh');
+cd('..')
+system('sh clean.sh');
+cd('src')
 getTrainingSet;
 playList = getFileList('play');
-playFeats = analyze('play');
+playFeats = analyzeOrLoad('play');
 
 fprintf('\n')
 for fno = 1:length(playList)
@@ -14,7 +16,8 @@ for fno = 1:length(playList)
 %   if debug_mode
 %      disp(playSetName)
 %   end
-   [features, performs] =  analyze(playSetName);
+   %[features, performs] =  analyze(playSetName);
+   [features, performs] =  analyzeOrLoad(playSetName);
    modelParams = modeling(features, performs);
    play(modelParams, playFeats);
    fprintf('==================================================\n\n')
