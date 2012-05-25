@@ -1,7 +1,9 @@
 function [features, performParams] = analyzeOrLoad(setName)
+   settings
+   fprintf('%s...', setName)
    list = getFileList(setName);
 
-   fname = [list{1} '.ana.mat'];
+   fname = [midiPath list{1} '.ana.mat'];
    if exist(fname) 
       fprintf('Loading from existing analyze reaults...')
       score = load(fname);
@@ -15,7 +17,7 @@ function [features, performParams] = analyzeOrLoad(setName)
       for perfNo = 1:perfCount performParams{perfNo} = cell(1, listCount); end
 
       for fno = 1:listCount
-         fname = [list{fno} '.ana.mat'];
+         fname = [midiPath list{fno} '.ana.mat'];
          if exist(fname) 
             score = load(fname);
             for featNo = 1:featCount

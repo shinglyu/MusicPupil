@@ -1,10 +1,13 @@
 settings
-cd('..')
-system('sh clean.sh');
-cd('src')
+if noCache
+   cd('..')
+   system('sh clean.sh');
+   cd('src')
+end
 getTrainingSet;
 playList = getFileList('play');
 playFeats = analyzeOrLoad('play');
+analyzeOrLoad('sample');
 
 fprintf('\n')
 for fno = 1:length(playList)

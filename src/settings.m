@@ -10,9 +10,10 @@ debug_mode =    0;
 midiPath= '../data/';
 outPath = '../out/';
 %trainSampleName= 'sampleList.txt';
-sampSize= 0.5; %0~1 (percent)
+noCache =        1;
+sampSize=      0.5; %0~1 (percent)
 
-melodyOnly= 1;
+melodyOnly=      1;
 playMelodyOnly = 1;
 
 %choose feature analyze modules

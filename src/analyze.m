@@ -31,11 +31,11 @@ function [features, performParams] = analyze(setName)
       featNo.getNext;
    end
 
-   fprintf('Analyzing Performances...')
    performParams  = {};
    if strcmp(setName, 'play')
       %do nothing
    else
+      fprintf('Analyzing Performances...')
       perfNo= NextUsedPerf;
       %TODO currPerform= 0;
       perfNo.getNext;
@@ -50,7 +50,7 @@ function [features, performParams] = analyze(setName)
    feature = {};
    performParam = {};
    for fno = 1:length(list)
-      fname = [list{fno} '.ana.mat'];
+      fname = [midiPath list{fno} '.ana.mat'];
       for featNo = 1:length(features)
          feature{featNo} = features{featNo}{fno};
       end
