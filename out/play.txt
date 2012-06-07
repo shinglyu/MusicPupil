@@ -1,0 +1,11 @@
+expr_kv331_phrase001_score.mid
+expr_kv331_phrase002_score.mid
+expr_kv331_phrase003_score.mid
+expr_kv331_phrase004_score.mid
+expr_kv331_phrase005_score.mid
+mahler_phrase001_score.mid
+orig_kv331_phrase001_score.mid
+orig_kv331_phrase002_score.mid
+orig_kv331_phrase003_score.mid
+orig_kv331_phrase004_score.mid
+orig_kv331_phrase005_score.mid

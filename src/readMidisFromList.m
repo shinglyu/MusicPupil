@@ -10,5 +10,6 @@ function nmats = readMidisFromList(list)
 %         disp(fname)
 %      end
       nmats{ end +1 }= readmidi_java(fname);%no mex version
+      metadata{end +1 } = readMeta(fname);
    end
 end

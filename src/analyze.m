@@ -6,7 +6,7 @@ function [features, performParams] = analyze(setName)
 
    %disp('Reading Midis...')
    list = getFileList(setName);
-   nmats = readMidisFromList(list);
+   [nmats, metadata] = readMidisFromList(list);
 
    %nmats = readMidis(midiPath, setName);
    %disp('Preprocessing Midis...')
@@ -25,7 +25,7 @@ function [features, performParams] = analyze(setName)
       %if debug_mode
       %   disp(featNo.currFeat);
       %end
-      feature= getFeat(featNo.currFeat, trainScores);
+      feature= getFeat(featNo.currFeat, trainScores, metadata);
       features{end +1 }= feature;
 
       featNo.getNext;

@@ -15,6 +15,7 @@ function simList = getSimilar(queryScore, sampScores, sampFnames)
    end
    [sortedList, idx] = sort(rankList, 'descend');
    numSamples = floor(length(idx)*sampSize);
+   disp([num2str(numSamples) ' samples are selected for modeling.'])
    assert(numSamples > 0, 'Sample size too small, no sample are selected. Consider using a larger sampSize.')
    for i = 1:numSamples
       simList{i} = sampFnames{idx(i)};

@@ -1,6 +1,6 @@
 function getTrainingSet()
    settings
-   fprintf('Calculating similartiy and preparing training sets...')
+   disp('Calculating similartiy and preparing training sets...')
    playList = getFileList('play');
    playScores = readMidisFromList(playList);
    sampList = getFileList('sample');
@@ -13,6 +13,7 @@ function getTrainingSet()
    %for each score
    %find top 10
    for scoreNo = 1:length(playScores)
+      fprintf('Score %s: ', playList{scoreNo})
       similarList = getSimilar(playScores{scoreNo}, sampScores, sampList);
       saveSimilar(similarList, playList{scoreNo})
    end
