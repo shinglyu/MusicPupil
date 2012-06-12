@@ -1,0 +1,9 @@
+function createMeta(fname)
+   metadata = struct('var1', 0, ...
+                     'var2', 0, ...
+                     'var3', 0 ...
+                     ); 
+  metadata
+
+   save([fname '.meta.txt'],  'metadata', '-ascii');
+end

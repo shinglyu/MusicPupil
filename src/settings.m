@@ -3,7 +3,7 @@ addpath('../lib/midirw_java')
 addpath('./features')
 addpath('./performs')
 addpath('./similarity')
-debug_mode =    0;
+debug_mode =    1;
 %list of training samples
 %create a txt file containing all training sample filenames 
 %midiPath= '../audio/human_played_midi/KV310/';
