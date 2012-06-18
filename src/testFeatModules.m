@@ -3,13 +3,16 @@
 
 
    settings
-   setName = 'sample'; 
+   setName = 'test'; 
 
    disp('Reading Midis...')
-   trainSamples = readMidis(midiPath, setName);
+   list = getFileList(setName);
+   [nmats, metadata] = readMidisFromList(list);
    disp('Preprocessing Midis...')
    if melodyOnly
-      trainMelodies= getMelodies(trainSamples);
+      trainMelodies= getMelodies(nmats);
+   else
+      trainMelodies = nmats;
    end
    trainScores = quantizeAll(trainMelodies);
 
@@ -20,7 +23,7 @@
    %TODO currFeatorm= 0;
    featNo.getNext;
    while ~featNo.isEnd
-      feature= getFeat(featNo.currFeat, trainScores)
+      feature= getFeat(featNo.currFeat, trainScores, metadata)
       features{end +1 }= feature;
 
       featNo.getNext;

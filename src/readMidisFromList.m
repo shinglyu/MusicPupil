@@ -1,8 +1,9 @@
 %read midis from fname txt file list 
 %output cell array of nmats
-function nmats = readMidisFromList(list)
+function [nmats metadata]= readMidisFromList(list)
    settings
    nmats = {};
+   metadata = {};
    for fno = 1:length(list)
       %fid = fopen([midiPath list(fno)]);
       fname = [midiPath list{fno}];

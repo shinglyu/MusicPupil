@@ -9,7 +9,8 @@ function pos = getMetricalPos(scores, metadata)
       %metadata.beatSize
       %metadata.measureStart;
       for j = 1:size(scores{i}, 1)
-         pos{i}(j, 1) = mod(metadata{i}.measureStart+j-1), metadata{i}.beatsInMeasure);
+         assert(metadata{i}.beatsInMeasure > 0, ['Bad beatsInMeasure for score ' num2str(i)] )
+         pos{i}(j, 1) = mod(metadata{i}.measureStart+j-1, metadata{i}.beatsInMeasure);
       end
    end
 end

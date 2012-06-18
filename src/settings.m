@@ -2,6 +2,7 @@ addpath('../lib/miditoolbox')
 addpath('../lib/midirw_java')
 addpath('./features')
 addpath('./performs')
+addpath('./models')
 addpath('./similarity')
 debug_mode =    1;
 %list of training samples
@@ -23,8 +24,9 @@ useFeature(3) = 0; %doRelativePitch= 1;
 useFeature(4) = 0; %ScoreDuration= 1;
 useFeature(5) = 0; %PitchDiffPerv
 useFeature(6) = 0; %PitchDiffNext
-useFeature(7) = 0; %RelaDurationPrev
+useFeature(7) = 1; %RelaDurationPrev
 useFeature(8) = 1; %RelaDurationNext
+useFeature(9) = 1; %MetricalPos
 %choose performance param modules
 usePerform(1) = 0; %%doTimeBias =    1; 
 usePerform(2) = 1; %%doLoudness=    1;
@@ -33,7 +35,9 @@ usePerform(4) = 1; %%relaTimeBias=    1;
 
 
 %choose modeling method
-useRegression = 1;
+useModel(1)   = 0; %polfit Regression
+useModel(2)   = 1; %mvregress
+useModel(3)   = 0; %mvregress
 
 %modeling
 visualize =     1;
