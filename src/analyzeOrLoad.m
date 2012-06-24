@@ -1,6 +1,6 @@
 function [features, performParams] = analyzeOrLoad(setName)
    settings
-   fprintf('%s...', setName)
+   fprintf('Dataset:%s...', setName)
    list = getFileList(setName);
 
    fname = [midiPath list{1} '.ana.mat'];

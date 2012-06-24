@@ -5,13 +5,13 @@ function outScores = applyLoudness(inScores, performParam);
       disp('loudness input')
       disp(inScores{1}(:,5))
    end
-   MAX_LOUD = 127;
+   %MAX_LOUD = 127;
    for scoreNo = 1: length(inScores)
       %disp(size(inScores{scoreNo}(:,5)));
       %disp(size(performParam{scoreNo}));
-      MAX_LOUD = 127;
+      %MAX_LOUD = 127;
       if max(performParam{scoreNo}) > MAX_LOUD
-         inScores{scoreNo}(:,5) = performParam{scoreNo} / max(performParam{scoreNo}) * MAX_LOUD;
+         inScores{scoreNo}(:,5) = performParam{scoreNo} / max(performParam{scoreNo}) * (MAX_LOUD - MIN_LOUD) + MIN_LOUD;
       else
          inScores{scoreNo}(:,5) = performParam{scoreNo};
       end

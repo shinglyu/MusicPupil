@@ -1,3 +1,3 @@
-measureStart   1
+measureStart   2
 beatsInMeasure 4 
 
