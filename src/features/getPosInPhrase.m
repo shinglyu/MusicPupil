@@ -5,7 +5,7 @@ function posInPhrase= getPosInPhrase(scores);
       if debug_mode
          disp(i)
       end
-      totalDuration = scores{i}(end, 6) + scores{i}(end, 7);
-      posInPhrase{i} = scores{i}(:, 6) ./ totalDuration; %unit: % /100
+      totalDuration = scores{i}(end, ONSET_SEC) + scores{i}(end, DURATION_SEC);
+      posInPhrase{i} = scores{i}(:, ONSET_SEC) ./ totalDuration; %unit: % /100
    end
 end

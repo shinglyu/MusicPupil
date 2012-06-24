@@ -54,3 +54,12 @@ defaultTempo = 30;
 %playing
 MIN_LOUD = 80; %minmum loudness level, default = 0
 MAX_LOUD = 127; %maximum loudness level, default = 127
+
+%Note matrix columns const
+ONSET_BEATS    = 1;
+DURATION_BEATS = 2;
+CHANNELS       = 3;
+PITCHS         = 4;
+VELOCITIES     = 5;
+ONSET_SEC      = 6;
+DURATION_SEC   = 7;

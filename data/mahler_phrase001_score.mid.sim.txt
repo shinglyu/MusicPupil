@@ -7,5 +7,4 @@ raindrop_phrase017_music.mid
 kv310_phrase005_music.mid
 raindrop_phrase016_music.mid
 raindrop_phrase018_music.mid
-kv310_phrase015_music.mid
-raindrop_phrase005_music.mid
+kv310_phrase016_music.mid

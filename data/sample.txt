@@ -5,7 +5,6 @@ kv310_phrase003_music.mid
 kv310_phrase004_music.mid
 kv310_phrase005_music.mid
 kv310_phrase006_music.mid
-kv310_phrase007_music.mid
 kv310_phrase008_music.mid
 kv310_phrase009_music.mid
 kv310_phrase010_music.mid
