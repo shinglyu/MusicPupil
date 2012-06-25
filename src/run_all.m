@@ -11,7 +11,7 @@ analyzeOrLoad('sample');
 
 fprintf('\n')
 for fno = 1:length(playList)
-   infoline = ['=====' playList{fno}];
+   infoline = ['===== Perform Score:' playList{fno}];
    for i = 1:(50-length(infoline)) infoline = [infoline '=']; end
    disp(infoline)
    

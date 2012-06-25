@@ -11,8 +11,13 @@ function param = modelSingleRegress(features, performances)
    %for perfNo = 1: size(performances,2)
    %prepare feature cell for mvregress input
    for perfNo = 1: size(performances,2)
-      param{perfNo} = regress(performances(:,perfNo), features );
+      [param{perfNo}, paramInt, r, rInt, stats] = regress(performances(:,perfNo), features );
    end
+
+   disp(['R2-statics: ' num2str(stats(1))]);
+   disp(['F-statics: ' num2str(stats(2))]);
+   disp(['p-value: ' num2str(stats(3))]);
+   disp(['estimate of error var: ' num2str(stats(3))]);
 
    if debug_mode
       disp(param)
