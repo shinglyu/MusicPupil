@@ -13,8 +13,8 @@ midiPath= '../data/';
 outPath = '../out/';
 %trainSampleName= 'sampleList.txt';
 noCache =        1;
-%sampSize=      0.3; %0~1 (percent)
-sampSize=        1; %0~1 (percent)
+sampSize=      0.3; %0~1 (percent)
+%sampSize=        1; %0~1 (percent)
 
 melodyOnly=      1;
 playMelodyOnly = 1;

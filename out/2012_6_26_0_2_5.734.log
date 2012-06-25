@@ -1,0 +1,31 @@
+rm: 無法移除 ‘out/*.mp3’: 沒有此一檔案或目錄
+rm: 無法移除 ‘data/*.eps’: 沒有此一檔案或目錄
+Calculating similartiy and preparing training sets...
+Score kv331_phrase001_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase002_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase003_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase004_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase005_score.mid: 36 samples are selected for modeling.
+Score mahler_phrase001_score.mid: 36 samples are selected for modeling.
+DONE
+Dataset:play...Analyzing Note Features...DONE
+Dataset:sample...Analyzing Note Features...Analyzing Performances...DONE
+
+===== Perform Score:kv331_phrase001_score.mid=====
+Dataset:kv331_phrase001_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...
+{??? Error: <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',16,57)">File: modelSingleRegress.m Line: 16 Column: 57</a>
+Unbalanced or unexpected parenthesis or bracket.
+
+Error in ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,0)">modeling at 14</a>
+      modelParam = modelSingleRegress(concatedFeats,
+      concatedPerforms);
+
+Error in ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,0)">run_all at 24</a>
+   modelParams = modeling(features, performs);
+
+Error in ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,0)">run_all_log at 10</a>
+run_all
+} 
+ opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',16,57)
+run_all_log

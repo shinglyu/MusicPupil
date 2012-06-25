@@ -1,0 +1,74 @@
+rm: 無法移除 ‘out/*.mp3’: 沒有此一檔案或目錄
+rm: 無法移除 ‘data/*.eps’: 沒有此一檔案或目錄
+Calculating similartiy and preparing training sets...
+Score kv331_phrase001_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase002_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase003_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase004_score.mid: 36 samples are selected for modeling.
+Score kv331_phrase005_score.mid: 36 samples are selected for modeling.
+Score mahler_phrase001_score.mid: 36 samples are selected for modeling.
+DONE
+Dataset:play...Analyzing Note Features...DONE
+Dataset:sample...Analyzing Note Features...Analyzing Performances...DONE
+
+===== Perform Score:kv331_phrase001_score.mid=====
+Dataset:kv331_phrase001_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase002_score.mid=====
+Dataset:kv331_phrase002_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase003_score.mid=====
+Dataset:kv331_phrase003_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase004_score.mid=====
+Dataset:kv331_phrase004_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase005_score.mid=====
+Dataset:kv331_phrase005_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:mahler_phrase001_score.mid====
+Dataset:mahler_phrase001_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...R2-statics: 0.030505
+F-statics: 1.1497
+p-value: 0.31459
+estimate of error var: 0.31459
+DONE
+Playing phrase...DONE
+==================================================
+
+Log file name: ../out/2012_6_25_22_18_41.7718.log

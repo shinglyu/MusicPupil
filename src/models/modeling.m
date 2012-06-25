@@ -3,7 +3,7 @@ function modelParam = modeling(features, performParams)
    settings
 %   load('sample.mat'); %features, performances
 
-   fprintf('Modeling...')
+   fprintf('Modeling...\n')
    concatedFeats = concatinateFeatures(features);
    concatedPerforms = concatinateFeatures(performParams);
 

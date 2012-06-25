@@ -10,14 +10,20 @@ function param = modelSingleRegress(features, performances)
    %for featNo = 1: size(features,2)
    %for perfNo = 1: size(performances,2)
    %prepare feature cell for mvregress input
+   features = [features ones(size(features, 1), 1)]; %add const to ensure R-square is well defined
    for perfNo = 1: size(performances,2)
       [param{perfNo}, paramInt, r, rInt, stats] = regress(performances(:,perfNo), features );
+      disp(['===Perfromance Feature No.' num2str(perfNo) '==='])
+      disp(['R2-statics: ' num2str(stats(1))]);
+      disp(['F-statics: ' num2str(stats(2))]);
+      disp(['p-value: ' num2str(stats(3))]);
+      disp(['estimate of error var: ' num2str(stats(3))]);
    end
 
-   disp(['R2-statics: ' num2str(stats(1))]);
-   disp(['F-statics: ' num2str(stats(2))]);
-   disp(['p-value: ' num2str(stats(3))]);
-   disp(['estimate of error var: ' num2str(stats(3))]);
+   %disp(['R2-statics: ' num2str(stats(1))]);
+   %disp(['F-statics: ' num2str(stats(2))]);
+   %disp(['p-value: ' num2str(stats(3))]);
+   %disp(['estimate of error var: ' num2str(stats(3))]);
 
    if debug_mode
       disp(param)

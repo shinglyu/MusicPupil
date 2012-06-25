@@ -1,0 +1,186 @@
+rm: 無法移除 ‘out/*.mp3’: 沒有此一檔案或目錄
+rm: 無法移除 ‘data/*.eps’: 沒有此一檔案或目錄
+Calculating similartiy and preparing training sets...
+Score kv331_phrase001_score.mid: 10 samples are selected for modeling.
+Score kv331_phrase002_score.mid: 10 samples are selected for modeling.
+Score kv331_phrase003_score.mid: 10 samples are selected for modeling.
+Score kv331_phrase004_score.mid: 10 samples are selected for modeling.
+Score kv331_phrase005_score.mid: 10 samples are selected for modeling.
+Score mahler_phrase001_score.mid: 10 samples are selected for modeling.
+DONE
+Dataset:play...Analyzing Note Features...DONE
+Dataset:sample...Analyzing Note Features...Analyzing Performances...DONE
+
+===== Perform Score:kv331_phrase001_score.mid=====
+Dataset:kv331_phrase001_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.1===
+R2-statics: 0.31545
+F-statics: 2.6391
+p-value: 0.0076962
+estimate of error var: 0.0076962
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.2===
+R2-statics: -Inf
+F-statics: 5.7273
+p-value: 2.5758e-06
+estimate of error var: 2.5758e-06
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.3===
+R2-statics: 0.24669
+F-statics: 1.8755
+p-value: 0.059843
+estimate of error var: 0.059843
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase002_score.mid=====
+Dataset:kv331_phrase002_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.1===
+R2-statics: 0.41608
+F-statics: 4.7288
+p-value: 1.9356e-05
+estimate of error var: 1.9356e-05
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.2===
+R2-statics: -Inf
+F-statics: 6.6364
+p-value: 1.4584e-07
+estimate of error var: 1.4584e-07
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.3===
+R2-statics: 0.11673
+F-statics: 0.87708
+p-value: 0.5661
+estimate of error var: 0.5661
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase003_score.mid=====
+Dataset:kv331_phrase003_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.1===
+R2-statics: 0.4259
+F-statics: 4.7883
+p-value: 1.7908e-05
+estimate of error var: 1.7908e-05
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.2===
+R2-statics: -Inf
+F-statics: 6.4545
+p-value: 2.6057e-07
+estimate of error var: 2.6057e-07
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.3===
+R2-statics: 0.1348
+F-statics: 1.0056
+p-value: 0.45046
+estimate of error var: 0.45046
+DONE
+Playing phrase...DONE
+==================================================
+
+===== Perform Score:kv331_phrase004_score.mid=====
+Dataset:kv331_phrase004_score.mid.sim...Loading from existing analyze reaults...DONE
+Modeling...
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.1===
+R2-statics: 0.39154
+F-statics: 3.6854
+p-value: 0.00045191
+estimate of error var: 0.00045191
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.2===
+R2-statics: -Inf
+F-statics: 5.7273
+p-value: 2.5758e-06
+estimate of error var: 2.5758e-06
+{Warning: X is rank deficient to within machine precision.} 
+> In <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/stats/stats/regress.m',82,1)">regress at 82</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modelSingleRegress.m',15,1)">modelSingleRegress at 15</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/models/modeling.m',14,1)">modeling at 14</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',24,1)">run_all at 24</a>
+  In <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,1)">run_all_log at 10</a>
+===Perfromance Feature No.3===
+R2-statics: 0.21352
+F-statics: 1.5549
+p-value: 0.13482
+estimate of error var: 0.13482
+DONE
+Playing phrase...{??? Java exception occurred:
+javax.sound.midi.InvalidMidiDataException: data2 out of range: -12
+	at javax.sound.midi.ShortMessage.setMessage(Unknown Source)
+	at javax.sound.midi.ShortMessage.setMessage(Unknown Source)
+	at
+        edu.columbia.ee.csmit.MidiKaraoke.write.SimpleMidiWriter.addNote(SimpleMidiWriter.java:322)
+        	at
+        edu.columbia.ee.csmit.MidiKaraoke.write.SimpleMidiWriter.write(SimpleMidiWriter.java:160)
+        
+Error in ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/lib/midirw_java/writemidi_java.m',100,0)">writemidi_java at 100</a>
+SimpleMidiWriter.write(filename,onsets,duration, channel,...
+
+Error in ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/lib/midirw_java/writemidi_seconds.m',37,0)">writemidi_seconds at 37</a>
+    writemidi_java(nm,filename,tpq,tempo);
+
+Error in ==> <a href="matlab: opentoline('/home/a108210/

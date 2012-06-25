@@ -19,6 +19,7 @@ function exprScores = playMultiRegress(scores, param, features);
          for scoreNo = 1: length(features{1}) %num of scores
             singleFeat = selectScore(features, scoreNo);
             concatedFeats = concatinateFeatures(singleFeat);
+            concatedFeats = [concatedFeats ones(size(concatedFeats, 1), 1)]; %add const to ensure R-square is well defined
             %for featNo  = 1: length(features)
                %evaluate performance parameters
             scoreLength = size(concatedFeats, 1);
