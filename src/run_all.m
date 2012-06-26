@@ -5,7 +5,7 @@ if noCache
    cd('src')
 end
 getTrainingSet;
-playList = getFileList('play');
+%playList = getFileList('play');
 playFeats = analyzeOrLoad('play');
 analyzeOrLoad('sample');
 
@@ -15,14 +15,14 @@ for fno = 1:length(playList)
    for i = 1:(50-length(infoline)) infoline = [infoline '=']; end
    disp(infoline)
    
-   playSetName = [playList{fno} '.sim'];
+   trainSetName = [playList{fno} '.sim'];
 %   if debug_mode
 %      disp(playSetName)
 %   end
    %[features, performs] =  analyze(playSetName);
-   [features, performs] =  analyzeOrLoad(playSetName);
+   [features, performs] =  analyzeOrLoad(trainSetName);
    modelParams = modeling(features, performs);
-   play(modelParams, playFeats);
+   play(modelParams, playList{fno});
    fprintf('==================================================\n\n')
    
 end

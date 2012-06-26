@@ -1,4 +1,4 @@
-function exprScores = playMultiRegress(scores, param, features);
+function exprScores = playSingleRegress(scores, param, features);
    settings
    %features layer: features, scores, notes
 %   currFeat = 0;

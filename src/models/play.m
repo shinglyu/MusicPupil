@@ -1,33 +1,36 @@
 %generate expressive performance from model
-function play(modelParam, features)
+function play(modelParam, scoreName)
    settings
    fprintf('Playing phrase...');
    %load('modelParam.mat'); %modelParam
    %load('play.mat'); %features
 
-   list = getFileList('play');
-   scores = readMidisFromList(list);
-   %scores = readMidis(midiPath, 'play');
+   %list = getFileList('play');
+   %score = readMidisFromList(list);
+   %score = readMidis(midiPath, 'play');
+   features = analyzeOrLoad(scoreName);
+   list = getFileList(scoreName);
+   score = readMidisFromList(list);
    if playMelodyOnly
-      scores = getMelodies(scores);
+      score = getMelodies(score);
    end
-      writeMidis(scores, 'orig_');
+      writeMidisFromList(score, list, 'orig_');
 
    %concatedFeats = concatinateFeatures(features);
 
    modelNo = getModelNo();
    if modelNo == 1 
-      exprScores = playRegression(scores, modelParam, features);
+      exprScores = playRegression(score, modelParam, features);
    elseif modelNo == 2 
-      exprScores = playSingleRegress(scores, modelParam, features);
+      exprScores = playSingleRegress(score, modelParam, features);
    elseif modelNo == 3 
-      exprScores = playMultiRegress(scores, modelParam, features);
+      exprScores = playMultiRegress(score, modelParam, features);
    else
       warning('No model applied');
-      exprScores = scores;
+      exprScores = score;
    end
       
-   writeMidis(exprScores, 'expr_');
+   writeMidisFromList(exprScores, list,'expr_');
    disp('')
    disp('DONE')
 end
