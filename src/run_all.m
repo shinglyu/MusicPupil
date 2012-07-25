@@ -5,7 +5,7 @@ if noCache
    cd('src')
 end
 getTrainingSet;
-%playList = getFileList('play');
+playList = getFileList('play');
 playFeats = analyzeOrLoad('play');
 analyzeOrLoad('sample');
 

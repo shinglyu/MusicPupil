@@ -5,6 +5,9 @@ function saveSimilar(simList, fname)
    assert(fid > 0, 'No such file')
    for i = 1:length(simList)
       fprintf(fid, '%s\n', simList{i});
+      if debug_mode
+         disp(simList{i});
+      end
    end
    fclose(fid);
    %save(outfname, 'simList', '-ascii');

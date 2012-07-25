@@ -6,7 +6,7 @@ function writeMidisFromList(exprScores,list,  prefix)
    assert(length(exprScores) == length(list), 'Mismatched exprScore and fileNameList')
    for fno = 1:length(list)
       %fid = fopen([midiPath list(fno)]);
-      fname = [outPath list{fno}];
+      fname = [outPath prefix list{fno}];
 %      if debug_mode
 %         disp(fname)
 %      end

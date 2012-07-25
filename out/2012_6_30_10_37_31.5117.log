@@ -1,0 +1,93 @@
+rm: 無法移除 ‘data/*.eps’: 沒有此一檔案或目錄
+Calculating similartiy and preparing training sets...
+Score kv331_phrase001_score.mid: 10 samples are selected for modeling.
+kv310_phrase004_music.mid
+kv310_phrase005_music.mid
+kv310_phrase011_music.mid
+kv310_phrase009_music.mid
+kv310_phrase016_music.mid
+kv310_phrase010_music.mid
+kv310_phrase014_music.mid
+raindrop_phrase009_music.mid
+raindrop_phrase011_music.mid
+raindrop_phrase013_music.mid
+Score kv331_phrase002_score.mid: 10 samples are selected for modeling.
+raindrop_phrase016_music.mid
+raindrop_phrase009_music.mid
+raindrop_phrase011_music.mid
+raindrop_phrase013_music.mid
+raindrop_phrase015_music.mid
+raindrop_phrase018_music.mid
+raindrop_phrase004_music.mid
+kv310_phrase009_music.mid
+kv310_phrase004_music.mid
+raindrop_phrase007_music.mid
+Score kv331_phrase003_score.mid: 10 samples are selected for modeling.
+raindrop_phrase016_music.mid
+raindrop_phrase009_music.mid
+raindrop_phrase011_music.mid
+raindrop_phrase013_music.mid
+raindrop_phrase015_music.mid
+raindrop_phrase018_music.mid
+raindrop_phrase004_music.mid
+kv310_phrase004_music.mid
+kv310_phrase009_music.mid
+raindrop_phrase003_music.mid
+Score kv331_phrase004_score.mid: 10 samples are selected for modeling.
+kv310_phrase005_music.mid
+raindrop_phrase010_music.mid
+raindrop_phrase014_music.mid
+kv310_phrase004_music.mid
+kv310_phrase011_music.mid
+raindrop_phrase009_music.mid
+raindrop_phrase011_music.mid
+raindrop_phrase013_music.mid
+raindrop_phrase015_music.mid
+kv310_phrase014_music.mid
+Score kv331_phrase005_score.mid: 10 samples are selected for modeling.
+kv310_phrase006_music.mid
+kv310_phrase002_music.mid
+raindrop_phrase005_music.mid
+chop_nc_phrase001_music.mid
+kv310_phrase001_music.mid
+raindrop_phrase018_music.mid
+raindrop_phrase012_music.mid
+raindrop_phrase003_music.mid
+raindrop_phrase004_music.mid
+kv310_phrase013_music.mid
+Score mahler_phrase001_score.mid: 10 samples are selected for modeling.
+kv310_phrase004_music.mid
+raindrop_phrase009_music.mid
+raindrop_phrase011_music.mid
+raindrop_phrase013_music.mid
+raindrop_phrase015_music.mid
+raindrop_phrase017_music.mid
+kv310_phrase005_music.mid
+raindrop_phrase016_music.mid
+raindrop_phrase018_music.mid
+kv310_phrase016_music.mid
+DONE
+Dataset:play...Analyzing Note Features...{??? Operation terminated by user during ==> <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/matlab/general/path.m',110,0)">path at
+110</a>
+
+In ==> <a href="matlab: opentoline('/usr/local/MATLAB/R2010b/toolbox/matlab/general/addpath.m',87,0)">addpath at 87</a>
+    path(p, mp);
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/settings.m',2,0)">settings at 2</a>
+addpath('../lib/midirw_java')
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/NextUsedFeat.m',15,0)">NextUsedFeat>NextUsedFeat.getNext at 15</a>
+         settings
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/analyze.m',31,0)">analyze at 31</a>
+      featNo.getNext;
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/analyzeOrLoad.m',35,0)">analyzeOrLoad at 35</a>
+      [features, performParams] = analyze(setName);
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all.m',9,0)">run_all at 9</a>
+playFeats = analyzeOrLoad('play');
+
+In ==> <a href="matlab: opentoline('/home/a108210/Dropbox/Courses/project/build/src/run_all_log.m',10,0)">run_all_log at 10</a>
+run_all
+} 
