@@ -3,7 +3,7 @@
 %function [featNo, currRule] = getNextUsedRule(currRule)
 classdef UsedRule <handle
    properties
-      currRule = 0;
+      currRule = 1;
       isEnd = false;
    end
    methods

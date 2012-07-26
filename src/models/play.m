@@ -10,7 +10,7 @@ function play(modelParam, scoreName)
    %score = readMidis(midiPath, 'play');
    features = analyzeOrLoad(scoreName);
    list = getFileList(scoreName);
-   score = readMidisFromList(list);
+   [score metadata] = readMidisFromList(list);
    if playMelodyOnly
       score = getMelodies(score);
    end
@@ -29,6 +29,10 @@ function play(modelParam, scoreName)
       warning('No model applied');
       exprScores = score;
    end
+
+   exprScores = playRule(exprScores, metadata);
+
+   
       
    writeMidisFromList(exprScores, list,'expr_');
    disp('')

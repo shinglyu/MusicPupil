@@ -1,3 +1,4 @@
+function 
 settings
 setName = 'play'; 
 
@@ -11,8 +12,8 @@ origNmats = nmats;
 rules = UsedRule;
 
 while ~rules.isEnd
-   nmats = rules.apply(nmats, metadata);
    rules.next();
+   nmats = rules.apply(nmats, metadata);
 end
    dif = nmats{1} - origNmats{1};
    find(dif ~= 0)
