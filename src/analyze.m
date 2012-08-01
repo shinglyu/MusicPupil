@@ -18,17 +18,15 @@ function [features, performParams] = analyze(setName)
 
    fprintf('Analyzing Note Features...')
    features = {};
-   featNo= NextUsedFeat;
+   feat= UsedFeat;
    %TODO currFeatorm= 0;
-   featNo.getNext;
-   while ~featNo.isEnd
+   while ~feat.isEnd
       %if debug_mode
-      %   disp(featNo.currFeat);
+      %   disp(feat.currFeat);
       %end
-      feature= getFeat(featNo.currFeat, trainScores, metadata);
+      feature= feat.get(trainScores, metadata);
       features{end +1 }= feature;
-
-      featNo.getNext;
+      feat.next();
    end
 
    performParams  = {};
@@ -36,14 +34,13 @@ function [features, performParams] = analyze(setName)
       %do nothing
    else
       fprintf('Analyzing Performances...')
-      perfNo= NextUsedPerf;
+      perf= UsedPerf;
       %TODO currPerform= 0;
-      perfNo.getNext;
-      while ~perfNo.isEnd
-         perfParam = getPerform(perfNo.currPerf, trainMelodies, trainScores);
+      while ~perf.isEnd
+         perfParam = perf.get(trainMelodies, trainScores);
          performParams {end +1 }= perfParam;
 
-         perfNo.getNext;
+         perf.next();
       end
    end
 

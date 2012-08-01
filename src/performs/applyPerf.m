@@ -8,6 +8,7 @@ function outScores= applyPerf(performNo, inScores, performParam)
    elseif performNo == 4
       outScores = applyRelaTimeBias(inScores, performParam);
    else
-      warning('No such performance parameter!')
+      %warning('No such performance parameter!')
+      assert(1==2, ['No such performance parameter:' num2str(performNo)])
    end
 end

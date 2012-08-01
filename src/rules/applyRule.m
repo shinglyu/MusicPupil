@@ -3,7 +3,6 @@ function outScores= applyRule(ruleNo, inScores, metadata)
       outScores = applyJazz01(inScores, metadata);
    elseif ruleNo == 2
    else
-      warning('No such rule!')
-      outScores = 0;
+      assert(1==2, ['No such rule:' num2str(ruleNo)])
    end
 end

@@ -2,7 +2,7 @@
 %RULE 1
 function outScores = applyJazz01(inScores, metadata);
 
-   duraMultiplier = 3;
+   duraMultiplier = 2;
    shortenMultiplier = 0.5;
 
    settings

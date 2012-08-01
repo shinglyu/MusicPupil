@@ -9,12 +9,12 @@ function exprScores = playSingleRegress(scores, param, features);
 
    
    %for featNo= 1:size(param,1)
-      realPerfNo= NextUsedPerf;
+      perfs= UsedPerf;
       for perfNo= 1:size(param,2)
          performParam = {};
-         realPerfNo.getNext;
+         %perfs.next;
 %         if debug_mode
-%            disp(realPerfNo.currPerf)
+%            disp(perfs.currPerf)
 %         end
          for scoreNo = 1: length(features{1}) %num of scores
             singleFeat = selectScore(features, scoreNo);
@@ -34,7 +34,8 @@ function exprScores = playSingleRegress(scores, param, features);
             %assert(featNo == length(features), 'Features matrix reached the end before all features are evaluated');
             %break;
          end
-         scores = applyPerf(realPerfNo.currPerf, scores, performParam);
+         scores = perfs.apply(scores, performParam);
+         perfs.next;
       end
    %end
    exprScores = scores;

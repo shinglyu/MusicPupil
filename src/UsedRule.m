@@ -3,13 +3,16 @@
 %function [featNo, currRule] = getNextUsedRule(currRule)
 classdef UsedRule <handle
    properties
-      currRule = 1;
+      currRule = 0;
       isEnd = false;
    end
    methods
       %function bool = isEnd(obj)
       %   bool = obj.reachedEnd;
       %end
+      function obj = UsedRule(obj)
+         obj.next;
+      end
 
       function obj = next(obj)
          settings
