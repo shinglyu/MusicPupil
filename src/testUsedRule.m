@@ -16,6 +16,12 @@ while ~rules.isEnd
    rules.next;
 end
    dif = nmats{1} - origNmats{1};
-   find(dif ~= 0)
+   disp('original score')
+   disp(origNmats{1})
+   disp('input/output difference')
+   disp(dif)
+   if size(find(dif ~= 0)) > 0
+      disp('Input and Output is different.')
+   end
 
    

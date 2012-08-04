@@ -12,13 +12,14 @@ function outScores = applyJazz01(inScores, metadata);
       tmpScore = inScores{scoreNo};
       for noteNo = 2:size(inScores{scoreNo}, 1)-1
          assert(noteNo-1 >= 1);
-         prevNoteDura = inScores{scoreNo}(noteNo-1,DURATION_BEATS);
-         thisNoteDura = inScores{scoreNo}(noteNo,DURATION_BEATS);
+         prevNoteDura = inScores{scoreNo}(noteNo-1,DURATION_SEC);
+         thisNoteDura = inScores{scoreNo}(noteNo,DURATION_SEC);
          assert(noteNo+1 <= size(inScores{scoreNo}, 1));
-         nextNoteDura = inScores{scoreNo}(noteNo+1,DURATION_BEATS);
+         nextNoteDura = inScores{scoreNo}(noteNo+1,DURATION_SEC);
          %TODO is weak met
          if (thisNoteDura < duraMultiplier*nextNoteDura ) && (thisNoteDura < duraMultiplier*prevNoteDura)
-            tmpScore(noteNo,DURATION_BEATS) = tmpScore(noteNo,DURATION_BEATS) * shortenMultiplier;
+            tmpScore = alterDuration(tmpScore, noteNo, shortenMultiplier);
+            %tmpScore(noteNo,DURATION_SEC) = tmpScore(noteNo,DURATION_SEC) * shortenMultiplier;
          end
       end
       outScores{scoreNo} = tmpScore;
