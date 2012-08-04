@@ -6,7 +6,7 @@ function outScores = applyJazz03(inScores, metadata);
    lengthenMult= 1.2;
 
    settings
-   pos = getMetricalPos(inScores, metadata);
+   %pos = getMetricalPos(inScores, metadata);
    outScores = inScores; %preallocate
    for scoreNo = 1: length(inScores)
       tmpScore = inScores{scoreNo};

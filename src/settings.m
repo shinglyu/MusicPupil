@@ -42,8 +42,8 @@ usePerform(2) = 1; %%doLoudness=    1;
 usePerform(3) = 1; %%doRealDuration=    1;
 usePerform(4) = 1; %%relaTimeBias=    1;
 
-useRule(1) = 0; %%jazz01
-useRule(2) = 0; %%jazz02
+useRule(1) = 1; %%jazz01
+useRule(2) = 1; %%jazz02
 useRule(3) = 1; %%jazz03
 useRule(4) = 0; %%jazz04
 
