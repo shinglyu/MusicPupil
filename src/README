@@ -1,0 +1,21 @@
+MusicPupil Computer Expressive Music Performance System
+by: Shing Lyu
+=======================================================
+Required Package:
+   - python 2.7
+   - music21-1.3.0
+   - rpy (python-rpy in debian repo)
+
+Usage:
+   - Performance model training: 
+        musicPupilTrain.py
+        (run './musicPupilTrain.py --help' for usage)
+   - Expressive performance generation: 
+        musicPupilGen.py
+        (run './musicPupilGen.py --help' for usage)
+   - Configuration:
+      In config.py you can
+      - turn features on/off
+      - choose modeling method
+      - choose output format
+      - set default pathes
