@@ -1,0 +1,66 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+DEBUG	config.py	/^DEBUG = True$/;"	v
+applyDurationPercent	perfFeature.py	/^def applyDurationPercent(inSample, perfFeats):$/;"	f
+applyFeats	featureManager.py	/^def applyFeats(inScore, perfFeats):$/;"	f
+applyOnsetDiffQNote	perfFeature.py	/^def applyOnsetDiffQNote(inSample, perfFeats):$/;"	f
+applyVelocityMidiScale	perfFeature.py	/^def applyVelocityMidiScale(inSample, perfFeats):$/;"	f
+cacheByName	perfFeature.py	/^def cacheByName(function):$/;"	f
+cacheByName	scoreFeature.py	/^def cacheByName(function):$/;"	f
+collectFeats	model.py	/^def collectFeats(trainFeats, featType):$/;"	f
+collectPerfFeats	model.py	/^def collectPerfFeats(trainFeats):$/;"	f
+collectScoreFeats	model.py	/^def collectScoreFeats(trainFeats):$/;"	f
+defaultGenFeatFilename	config.py	/^defaultGenFeatFilename="..\/output\/genFeat.json"$/;"	v
+defaultGenScore	config.py	/^defaultGenScore="..\/testing_scores\/test2"$/;"	v
+defaultModelFilename	config.py	/^defaultModelFilename="..\/output\/model.bin"$/;"	v
+defaultOutputDir	config.py	/^defaultOutputDir="..\/output\/"$/;"	v
+defaultTrainFeatsFilename	config.py	/^defaultTrainFeatsFilename="..\/output\/trainFeats.json" #may need to prepend file name $/;"	v
+defaultTrainSampleList	config.py	/^defaultTrainSampleList="..\/training_samples\/trainSampleList.txt"$/;"	v
+dummyFunc	utest_model.py	/^def dummyFunc():$/;"	f
+extractBeat	scoreFeature.py	/^def extractBeat(sample):$/;"	f
+extractBeatStrength	scoreFeature.py	/^def extractBeatStrength(sample):$/;"	f
+extractDurationPercent	perfFeature.py	/^def extractDurationPercent(sample):$/;"	f
+extractDurationQNote	scoreFeature.py	/^def extractDurationQNote(sample):$/;"	f
+extractDurationRatioNextPercent	scoreFeature.py	/^def extractDurationRatioNextPercent(sample):$/;"	f
+extractDurationRatioPrevPercent	scoreFeature.py	/^def extractDurationRatioPrevPercent(sample):$/;"	f
+extractFeats	featureManager.py	/^def extractFeats(sample, featType):$/;"	f
+extractGenFeat	featureManager.py	/^def extractGenFeat(sample):$/;"	f
+extractOnsetDiffQNote	perfFeature.py	/^def extractOnsetDiffQNote(sample):$/;"	f
+extractPitchDiffNextMidiNum	scoreFeature.py	/^def extractPitchDiffNextMidiNum(sample):$/;"	f
+extractPitchDiffPrevMidiNum	scoreFeature.py	/^def extractPitchDiffPrevMidiNum(sample):$/;"	f
+extractPitchMidiNum	scoreFeature.py	/^def extractPitchMidiNum(sample):$/;"	f
+extractPosInPhrasePercent	scoreFeature.py	/^def extractPosInPhrasePercent(sample):$/;"	f
+extractTrainFeat	featureManager.py	/^def extractTrainFeat(sample):$/;"	f
+extractVelocityMidiScale	perfFeature.py	/^def extractVelocityMidiScale(sample):$/;"	f
+genMultiLinearRegress	model.py	/^def genMultiLinearRegress(genFeats, modelFilename):$/;"	f
+genMusic	musicGenerator.py	/^def genMusic(genScore, perfFeats, outputDir):$/;"	f
+genPerfFeats	model.py	/^def genPerfFeats(genFeatFilename, modelFilename):$/;"	f
+getModelFunc	model.py	/^def getModelFunc(mode):$/;"	f
+getMusicOutputFunc	musicGenerator.py	/^def getMusicOutputFunc():$/;"	f
+loadGenScore	sampleLoader.py	/^def loadGenScore(sampleName):$/;"	f
+loadJson	featureManager.py	/^def loadJson(filename):$/;"	f
+loadTrainSample	sampleLoader.py	/^def loadTrainSample(sampleName):$/;"	f
+main	musicPupilGen.py	/^def main():$/;"	f
+main	musicPupilTrain.py	/^def main():$/;"	f
+model	utest_model.py	/^model = model.trainMultiLinearRegress(trainFeats, config.defaultModelFilename)$/;"	v
+modelFuncName	config.py	/^modelFuncName = [ "MultiLinearRegress",$/;"	v
+musicOutputFormat	config.py	/^musicOutputFormat= [ "Midi",$/;"	v
+outputMidi	musicGenerator.py	/^def outputMidi(outSamp, outputDir):$/;"	f
+parseFileList	sampleLoader.py	/^def parseFileList(inputList):$/;"	f
+perfFeatsList	config.py	/^perfFeatsList = [ "OnsetDiffQNote",$/;"	v
+printDebug	config.py	/^def printDebug(string):$/;"	f
+saveJson	featureManager.py	/^def saveJson(featList, filename):$/;"	f
+scoreFeatsList	config.py	/^scoreFeatsList = [ "PosInPhrasePercent",$/;"	v
+trainFeat	utest_featureManager.py	/^   trainFeat = featureManager.extractTrainFeat(trainSamp)$/;"	v
+trainFeats	utest_model.py	/^trainFeats = featureManager.loadJson(config.defaultTrainFeatsFilename)$/;"	v
+trainModel	model.py	/^def trainModel(trainFeatFilename, modelFilename):$/;"	f
+trainMultiLinearRegress	model.py	/^def trainMultiLinearRegress(trainFeats, modelFilename):$/;"	f
+trainSamp	utest_featureManager.py	/^   trainSamp = sampleLoader.loadTrainSample(trainSampFilename)$/;"	v
+trainSampList	utest_featureManager.py	/^trainSampList = sampleLoader.parseFileList(config.unittestTrainSampleList)$/;"	v
+unittestTrainSampleList	config.py	/^unittestTrainSampleList="..\/training_samples\/trainSampleList.txt"$/;"	v
+wrapper	perfFeature.py	/^   def wrapper(*args):$/;"	f	function:cacheByName
+wrapper	scoreFeature.py	/^   def wrapper(*args):$/;"	f	function:cacheByName

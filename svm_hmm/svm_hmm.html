@@ -1,0 +1,356 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>SVM-HMM: Sequence Tagging with SVMs</title>
+<style type="text/css">
+a:link {color: #44aa22}
+a:active {color: #22aa88}
+a:visited {color: #005522}
+
+span.vec {font-weight: bold}
+span.var {font-style: italic}
+span.define {font-style: italic}
+.highlight {font-color: #000099}
+.code {font-family: monospace; border: 1px solid #668866; background-color: #f8ffe8; padding: 8px; margin-top: 10px; margin-bottom: 10px}
+
+h4 {margin-left: 15px}
+
+/*lhc = left header cell, thc = top header cell, dlc = data cell (loss), drc = data cell (runtime)*/
+td.lhc {text-align: right; font-weight: bold; padding-right: 20px}
+td.thc {text-align: center; font-weight: bold}
+td.dlc {text-align: left; padding-left: 10px; padding-right: 10px}
+td.drc {text-align: right; padding-left: 10px; padding-right: 10px}
+</style>
+</head>
+<body data-feedly-processed="yes">
+<center>
+<h1>SVM<sup><i>hmm</i></sup></h1>
+<h2>Sequence Tagging with Structural Support Vector Machines</h2>Version V3.10<br>
+14. August 2008 <p><font color="#000000">Author: </font>
+<a target="_top" href="http://www.joachims.org/">Thorsten Joachims</a><font color="#000000"> 
+&lt;</font><a href="mailto:thorsten@joachims.org">thorsten@joachims.org</a><font color="#000000">&gt;
+<br>
+</font><a target="_top" href="http://www.cornell.edu/">Cornell University</a><font color="#000000">
+<br>
+</font><a target="_top" href="http://www.cs.cornell.edu/">Department of Computer 
+Science</a><font color="#000000"> </font>&nbsp;</p>
+<p>with thanks to Evan Herbst for earlier versions.</p>
+</center>
+
+<p></p><h2>Introduction</h2>
+SVM<sup><i>hmm</i></sup> is an implementation of structural SVMs for sequence 
+tagging [Altun et. al, 2003] (e.g. part-of-speech tagging, named-entity 
+recognition, motif finding) using the training algorithm described in [Tsochantaridis 
+et al. 2004, Tsochantaridis et al. 2005] and the new algorithm of SVM<sup><i>struct</i></sup> 
+V3.10 [Joachims et al. 2009]. Unlike versions of SVM<sup><i>hmm</i></sup> prior 
+to V3.xx, this version<ul>
+  <li>can easily handle tagging problems with 
+millions of words and millions of features;</li>
+  <li>can train higher order models with arbitrary length dependencies for both 
+  the transitions and the emissions;</li>
+  <li>includes an optional beam search for fast approximate training and 
+  prediction;</li>
+  <li>is completely written in C without the need for additional libraries</li>
+	<li>a more detailed list of updates compared to version V3.03 is 
+	<a href="#history">here</a></li>
+</ul>
+<p>SVM<sup><i>hmm</i></sup> is implemented as an instance of the 
+<a href="http://svmlight.joachims.org/svm_struct.html">SVM<sup><i>struct</i></sup></a> 
+package. 
+
+
+</p><h2>Source Code and Binaries </h2>
+
+The program is free for scientific use. Please contact me, if you are planning 
+to use the software for commercial purposes. The software must not be further 
+distributed without prior permission of the author. The implementation was 
+developed on Linux with gcc, but compiles also on Cygwin, Windows (using the 
+MinGW option of Cygwin), and Mac (after small modifications, see <a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_light_faq.html">FAQ</a>).
+
+The source code of SVM<sup><i>hmm </i></sup> is available at the following 
+location: <p></p>
+<p></p>
+<dir>
+<p><a href="http://download.joachims.org/svm_hmm/current/svm_hmm.tar.gz">http://download.joachims.org/svm_hmm/current/svm_hmm.tar.gz</a></p>
+</dir>
+If you just want the binaries, you can download them for the following systems:
+<p></p><ul>      
+   <li>Linux: <a href="http://download.joachims.org/svm_hmm/current/svm_hmm_linux.tar.gz">http://download.joachims.org/svm_hmm/current/svm_hmm_linux.tar.gz</a></li>
+   <li>Cygwin: <a href="http://download.joachims.org/svm_hmm/current/svm_hmm_cygwin.tar.gz">http://download.joachims.org/svm_hmm/current/svm_hmm_cygwin.tar.gz</a></li>
+   <li>Windows: <a href="http://download.joachims.org/svm_hmm/current/svm_hmm_windows.zip">http://download.joachims.org/svm_hmm/current/svm_hmm_windows.zip</a></li>
+</ul>
+<p><a href="mailto:thorsten@joachims.org">Please send me email</a><font color="#000000"> 
+and let me know that you got it. All archives contain the most recent version of
+<i>SVM<sup>hmm</sup></i>, which includes <a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_struct.html"><i>SVM<sup>struct</sup></i></a> 
+and the <a href="http://www.cs.cornell.edu/people/tj/svm_light/index.html"><i>SVM<sup>light</sup></i> quadratic optimizer</a>. 
+Unpack the archive using the respective shell command: </font></p><font color="#000000">
+<pre>      gunzip �c svm_hmm.tar.gz | tar xvf �
+      gunzip �c svm_hmm_linux.tar.gz | tar xvf �
+      gunzip �c svm_hmm_cygwin.tar.gz | tar xvf �
+      unzip svm_hmm_windows.zip</pre>
+This expands the archive into the current directory, which now contains all 
+relevant files. If you downloaded the source code, you can compile <i>SVM<sup>hmm</sup></i> 
+using the command: 
+
+<pre>      make</pre>
+This will produce the executables <tt>svm_hmm_learn</tt> (the learning module) 
+and <tt>svm_hmm_classify </tt>(the classification module). For any questions 
+about how to best compile the system, check this </font><a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_light_faq.html">FAQ</a><font color="#000000">.
+</font>
+
+<h2>How to Use</h2>
+
+SVM<sup><i>hmm</i></sup> is built on top of SVM<sup><i>struct</i></sup>, a general implementation of SVMs for predicting complex structures containing interactions between elements.
+The site includes examples of its use for other applications as well as for sequence tagging.
+Use SVM<sup><i>hmm</i></sup> just like SVM<sup><i>struct</i></sup>, but there 
+are some added parameters explained below. To learn a model 
+and then classify
+a test set, run
+<pre>      svm_hmm_learn -c &lt;C&gt; -e &lt;EPSILON&gt; training_input.dat <span class="highlight">modelfile</span>.dat&nbsp;
+      svm_hmm_classify test_input.dat <span class="highlight">modelfile</span>.dat classify.tags&nbsp;
+</pre>
+where
+<ul>
+<li><tt>training_input.dat</tt> and <tt>test_input.dat</tt> are files containing 
+the training and test examples. Their format is described below.
+</li><li><tt><span class="highlight">modelfile</span>.dat</tt> contains the SVM<sup><i>hmm</i></sup> 
+model information learned from the input.&nbsp;
+</li><li><tt>classify.tags</tt> will receive lists of tags predicted for the test examples, 
+one tag for each line in <tt>test_input.dat</tt>.
+</li><li>Parameter <tt>"-c &lt;C&gt;</tt>": Typical SVM parameter C trading-off slack vs. 
+magnitude of the weight-vector. <br><b>NOTE: </b>The default value for 
+this parameter is unlikely to work well for your particular problem. A 
+good value for C must be selected via cross-validation, ideally 
+exploring values over several orders of magnitude.<br>
+<b>NOTE: </b>Unlike in V1.01, the value of <tt>C</tt> is divided by the number of training examples. So, to get results equivalent to V1.01, multiply <tt>C</tt> by the number of training examples.
+</li><li>Parameter <tt>"-e &lt;EPSILON&gt;</tt>": This specifies the precision to which constraints are required 
+to be satisfied by the solution. The smaller EPSILON,
+the longer and the more memory training takes, but the solution is more precise. 
+However, solutions more accurate than 0.5 typically do not improve prediction 
+accuracy.
+</li><li>Parameter <tt>"--t &lt;ORDER_T&gt;</tt>": Order of dependencies of transitions in 
+HMM. Can be any number larger than 1. (default 1)</li><li>Parameter <tt>"--e &lt;ORDER_E&gt;</tt>": 
+Order of dependencies of emissions in HMM. Can be any number larger than 0. 
+(default 0)</li><li>Parameter <tt>"--b &lt;WIDTH&gt;</tt>": A non-zero value turns on 
+(approximate) beam search to replace the exact Viterbi algorithm both for 
+finding the most violated constraint, as well as for computing predictions. The 
+value is the width of the beam used (e.g. 100). (default 0).</li></ul>
+
+The other paramters are identical to those of <a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_struct.html">SVM<sup><i>struct</i></sup></a>.<p></p>
+
+<p></p><h2>Example Problem</h2>
+<p>You will find an example part-of-speech (POS) tagging dataset (thanks to Evan Herbst) at</p>
+
+<dir><p><a href="http://download.joachims.org/svm_hmm/examples/example7.tar.gz" target="_top">http://download.joachims.org/svm_hmm/examples/example7.tar.gz</a></p></dir>
+
+<p>Download this file into your svm_hmm directory and unpack it with </p>
+<pre>     gunzip -c example7.tar.gz | tar xvf -</pre>
+
+<p>This will create a subdirectory <tt>example7</tt>. Try the following: </p>
+
+<pre>     ./svm_hmm_learn -c 5 -e 0.5 example7/declaration_of_independence.dat declaration.model <br>     ./svm_hmm_classify example7/gettysburg_address.dat declaration.model test.outtags </pre>
+
+The fraction of misclassified tags (i.e. "average loss per word" written
+ to stdout by the classification routine) should be about 0.28. Tagging 
+accuracy is 1 - this number, or 
+72%.
+The program also prints the average number of misclassified tags per 
+sentence 
+(i.e. "Average loss on test set") and the percentage of sentences that 
+had at 
+least one misclassified tag (i.e. "Zero/one-error on test set").
+
+<p>Disclaimer: this example wasn't tagged with professional accuracy; don't use 
+it for any real experiments. The Gettysburg tagging is based off the document at <a href="http://faculty.washington.edu/dillon/GramResources/gettysburgtreetagger.html">http://faculty.washington.edu/dillon/GramResources/gettysburgtreetagger.html</a>, which was tagged with Schmid's tagger--but TreeTagger had probably been trained on a real corpus first.
+
+<font color="#000000">
+
+</font></p><h2><font color="#000000">Algorithm and Model</font></h2><font color="#000000">
+
+SVM<sup><i>hmm</i></sup> discriminatively trains models that are 
+isomorphic to an kth-order hidden Markov model using the Structural Support Vector Machine (SVM) formulation. In 
+particular, given an observed input sequence <b>x</b>=(<span class="vec">x</span><sub>1</sub>...<span class="vec">x</span><sub>l</sub>) 
+of feature vectors <span class="vec">x</span><sub>1</sub>...<span class="vec">x</span><sub>l</sub>, 
+the model predicts a tag sequence <b>y</b>=(y<sub>1</sub>...y<sub>l</sub>) according to 
+the following linear discriminant function:<p></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<b>y</b> = argmax<sub><span class="vec">y</span></sub>
+<font size="large">{Σ</font><sub>i = 1..l</sub><font size="large"> [Σ</font><sub>j = 1..k
+</sub><font size="large">(</font><span class="vec">x</span><sub>i</sub>
+• <span class="vec">w</span><sub>y<sub>i-j</sub>...y<sub>i</sub></sub><font size="large">)</font>
++ φ<sub>trans</sub>(y<sub>i-j</sub>,...,y<sub>i</sub>) • <span class="vec">w</span><sub>trans</sub>]}</p>
+<p>The SVM<sup><i>hmm</i></sup> learns one emission weight vector <span class="vec">w</span><sub>y<sub>i-k</sub>...y<sub>i</sub></sub> 
+for each different kth-order tag sequence y<sub>i-k</sub>...y<sub>i</sub> and one 
+transition weight vector <span class="vec">w</span><sub>trans</sub> 
+for the transition weights between adjacent tags. φ<sub>trans</sub>(y<sub>i-j</sub>,...,y<sub>i</sub>) 
+is an indicator vector that has exactly one entry set to 1 corresponding to the 
+sequence y<sub>i-j</sub>,...,y<sub>i</sub>. Note that in contrast to a conventional HMM, 
+the observations <span class="vec">x</span><sub>1</sub>...<span class="vec">x</span><sub>l</sub> 
+can naturally be expressed as feature vectors, not just as atomic tokens. Also 
+note that a kth-order model includes all the parameters of the lower-order 
+models as well. During 
+training,&nbsp;SVM<sup><i>hmm</i></sup> solves the following optimization problem given training 
+examples (<b>x<sup>1</sup>,y<sup>1</sup></b>) ... (<b>x<sup>n</sup>,y<sup>n</sup></b>) 
+of sequences of feature vectors <b>x<sup>j</sup></b>=(<span class="vec">x</span><sup>j</sup><sub>1</sub>,...,<span class="vec">x</span><sup>j</sup><sub>l</sub>) 
+with their correct tag sequences <b>y<sup>j</sup></b>=(<span class="vec"><span style="font-weight: 400">y</span></span><sup>j</sup><sub>1</sub>,...,<span class="vec"><span style="font-weight: 400">y</span></span><sup>j</sup><sub>l</sub>). The following 
+optimization problem corresponds to a model with first-order transitions and zeroth-order emissions, but it should be obvious 
+how it generalizes to higher order models given the discriminant function from 
+above. As the loss 
+function Δ(<span class="vec">y</span><sup>i</sup>,<span class="vec">y</span>), 
+the number of misclassified tags in the sentence is used. </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min 1/2 w*w + C/n
+<font size="large">Σ</font><sub>i = 1..n</sub> ξ<sub>i</sub> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s.t. for all <span class="vec">y</span>:
+[<font size="large">Σ</font><sub>i = 1..l</sub><font size="large">(</font><span class="vec">x</span><sup>1</sup><sub>i</sub>
+• <span class="vec">w</span><sub>y<sup>1</sup><sub>i</sub></sub><font size="large">)</font>
++ φ<sub>trans</sub>(y<sup>1</sup><sub>i-1</sub>,y<sup>1</sup><sub>i</sub>) • <span class="vec">w</span><sub>trans</sub>] 
+&gt;= [<font size="large">Σ</font><sub>i = 1..l</sub><font size="large">(</font><span class="vec">x</span><sup>1</sup><sub>i</sub>
+• <span class="vec">w</span><sub>y<sub>i</sub></sub><font size="large">)</font>
++ φ<sub>trans</sub>(y<sub>i-1</sub>,y<sub>i</sub>) • <span class="vec">w</span><sub>trans</sub>] 
++ Δ(<span class="vec">y</span><sup>1</sup>,<span class="vec">y</span>) - ξ<sub>1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </sub>
+for all <span class="vec">y</span>:
+[<font size="large">Σ</font><sub>i = 1..l</sub><font size="large">(</font><span class="vec">x</span><sup>n</sup><sub>i</sub>
+• <span class="vec">w</span><sub>y<sup>n</sup><sub>i</sub></sub><font size="large">)</font>
++ φ<sub>trans</sub>(y<sup>n</sup><sub>i-1</sub>,y<sup>n</sup><sub>i</sub>) • <span class="vec">w</span><sub>trans</sub>] 
+&gt;= [<font size="large">Σ</font><sub>i = 1..l</sub><font size="large">(</font><span class="vec">x</span><sup>n</sup><sub>i</sub>
+• <span class="vec">w</span><sub>y<sub>i</sub></sub><font size="large">)</font>
++ φ<sub>trans</sub>(y<sub>i-1</sub>,y<sub>i</sub>) • <span class="vec">w</span><sub>trans</sub>] 
++ Δ(<span class="vec">y</span><sup>n</sup>,<span class="vec">y</span>) - ξ<sub>n</sub></p>
+<p>C is a parameter that trades off margin size and training error. While this 
+problem has exponentially many constraints, we use the cutting-plane algorithms&nbsp; implemented in&nbsp;<a href="http://svmlight.joachims.org/svm_struct.html">SVM<sup><i>struct</i></sup></a> to solve this 
+problem up to a precision of ε in polynomial time [Tsochantaridis 
+et al. 2004, Tsochantaridis et al. 2005]. In particular, we solve the one-slack 
+reformulation of the training problems using <i>SVM<sup>struct</sup></i> V3.10 
+[Joachims et al. 2009], 
+which makes this version of SVM<i><sup>hmm</sup></i> substantially faster than previous versions. See [Joachims et al. 2009] for more details on SVM<i><sup>hmm</sup></i>, including some part-of-speech tagging experiments.
+
+</p>
+<p>More information on <i>SVM<sup>struct</sup></i> is available <a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_struct.html">here</a>.
+
+
+</p><h2>Input File Format</h2>
+
+NOTE: The file format has changed from version V2.xx. A perl <a href="http://download.joachims.org/svm_hmm/v3.02/translate_HMM_dataset.pl">script for converting to the new format</a> 
+is available.
+
+<p>
+Input files of training and test examples follow the usual SVM<sup><i>light</i></sup> input file format. Each line
+in an example file holds one tag y<sup>j</sup><sub>i</sub>, the feature vector <span class="vec">x</span><sup>j</sup><sub>i</sub> of the associated token, and an optional comment.
+</p>
+<pre>      TAG qid:EXNUM FEATNUM:FEATVAL FEATNUM:FEATVAL ... #comment goes here
+</pre>
+TAG is a natural number (i.e. 1..k) that identifies the tag y<sup>j</sup><sub>i</sub> that is assigned to the 
+example. As the maximum tag number impacts the memory use, it is recommended to 
+use the numbers 1 to k for a problem with k tags.
+The EXNUM gives the example number j. The first line with a given EXNUM value is 
+interpreted as the first element of the sequence, the second line as the second 
+element, etc. All lines with the same EXNUM have to be in consecutive order. In 
+the case of POS tagging, an example file with two sequences may look like the 
+following (using the following mapping between tag numbers and part-of-speech 
+classes: 1=PRON, 2=NOUN, 3=VERB, 4=JJ, 5=PERIOD):
+<pre>      3 qid:1 1:1 2:1 3:1 #see 
+      2 qid:1 4:1 5:1 #jane
+      3 qid:1 2:-1 6:1 7:2.5 #play
+      2 qid:1 3:-1 8:1 #ball
+      5 qid:1 9:1 10:1 #.
+      1 qid:2 3:1 11:1 12:1 #she
+      3 qid:2 1:-1 13:1 14:2 #is
+      4 qid:2 15:1 16:0.1 17:-1 #good
+      5 qid:2 9:0.5 18:1 #.
+</pre>
+Here we've used the words in the sentence as the comments on each line, so that all the information we have about the input is
+contained in one file. Note that feature numbers are integral, starting at 1. Feature values are real
+numbers. Features for each token (e.g. "see") must appear in increasing order 
+of their feature number FEATNUM;
+you should skip features whose values are zero, although leaving them in won't do harm other than increasing runtime.
+
+<p>What features you chose to represent each token is entirely up to 
+you. Features can describe any property of the current token and its 
+relationship to any other token in the sequence. For example, in the 
+part-of-speech tagging experiments reported in [Joachims et al., 2009], 
+each token was described by binary features indicating each possible 
+prefix and suffix of the current token, the previous token, and the next
+ token. Examples of such features are "Does the current token end in 
+'ing'?", "Does the previous token end in 'ing'?", "Does the next token 
+start with 'A'?", "Is the current token 3 letters long?", etc. In total,
+ there were more than 400000 of such features, and the overall 
+dimensionality of the weight vector was greater than 18 million. In my 
+experience binary features work well, and I often discretize real-valued
+ features into multiple binary features.</p>
+
+
+<h2>Known Problems</h2>
+<ul>
+  <li>none at this time.</li>
+</ul>
+</font>
+
+<a name="history"><h2>History</h2></a>
+
+<h4>V3.03 - V3.10</h4>
+<ul>
+<li>Includes version V3.10 of <i> <a href="http://www.cs.cornell.edu/people/tj/svm_light/old/svm_struct_v3.10.html">SVM<sup>struct</sup></a></i>, 
+which makes it substantially faster.</li><li>Improved memory management.</li><li><font color="#000000">
+Now writes linear model files in a more compact format (i.e. stores only the 
+weight vector, not the support vectors).</font></li><li>Fixed 
+memory bug in svm_hmm_classify that appeared when there were previously unseen 
+features in a test example.</li></ul>
+
+<h4>V3.02 - V3.03</h4>
+<ul>
+<li>Added that svm_hmm_classify prints the predicted labels to a file.</li><li>Source code for 
+<a href="http://www.cs.cornell.edu/people/tj/svm_light/old/svm_hmm_v3.03.html"><i>SVM<sup>hmm</sup></i> 
+V3.03</a>.</li></ul>
+
+<h4>V2.13 - V3.02</h4>
+<ul>
+<li>Complete reimplementation in C.</li><li>Can train higher order models with 
+arbitrary length dependencies for both the transitions and the emissions.</li>
+<li>Now includes an optional beam search for fast approximate training and 
+prediction.</li>
+<li>Format of training and test files has changed.</li>
+<li>Source code for <a href="http://www.cs.cornell.edu/people/tj/svm_light/old/svm_hmm_v2.13.html"><i>SVM<sup>hmm</sup></i> 
+V2.13</a>.</li></ul>
+
+<h4>V1.01 - V2.13</h4>
+<ul>
+<li>New training algorithm based on equivalent 1-slack reformulation of the 
+training problem. This makes training on the linear kernel several orders of 
+magnitude faster than in V1.01. See changes introduced by
+<a href="http://www.cs.cornell.edu/people/tj/svm_light/svm_struct.html"><i>SVM<sup>struct</sup></i></a> V3.00 for a general 
+properties of the new structural SVM training algorithm.</li><li>New IO routines that 
+are faster for reading large data and model files.
+</li><li>Source code for <a href="http://www.cs.cornell.edu/people/tj/svm_light/old/svm_hmm_v1.01.html"> <i>SVM<sup>hmm</sup></i> 
+V1.01</a>.</li></ul>
+
+<h4>V1.00 - 1.01</h4>
+<ul>
+  <li>&nbsp;Fixed a small bug related to the debugging message "There is 
+  probably a bug in 'find_most_violated_constraint_*'..'.</li>
+</ul>
+
+
+<h2>References</h2>
+<ul>
+	<a name="tj_icml04"></a>
+	<li>T. Joachims, T. Finley, Chun-Nam Yu, Cutting-Plane Training of 
+    Structural SVMs, Machine Learning Journal, 77(1):27-59, 2009.<br>
+    <span lang="EN-GB">    
+    <a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.cs.cornell.edu/People/tj/publications/joachims_etal_09a.pdf">[PDF]</a></span></li><li>I. Tsochantaridis, T. Joachims, T. Hofmann, and Y. Altun, Large Margin 
+    Methods for Structured and Interdependent Output Variables, Journal of 
+    Machine Learning Research (JMLR), 6(Sep):1453-1484, 2005. <br>
+    <span lang="EN-GB">    <a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.jmlr.org/papers/volume6/tsochantaridis05a/tsochantaridis05a.pdf">
+    [PDF]</a> &nbsp;</span></li><li>I. Tsochantaridis, T. Hofmann, T. Joachims, Y. Altun. <i>Support Vector Machine Learning for Interdependent and Structured
+	Output Spaces</i>. International Conference on Machine Learning (ICML), 2004.
+    <br>
+    <a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.cs.cornell.edu/People/tj/publications/tsochantaridis_etal_04a.ps.gz">
+    <span lang="EN-GB">[Postscript]</span></a><span lang="EN-GB"> &nbsp;</span><a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.cs.cornell.edu/People/tj/publications/tsochantaridis_etal_04a.pdf"><span lang="EN-GB">[PDF]</span></a><span lang="EN-GB"> 
+    &nbsp;</span></li><li>
+Y. Altun, I. Tsochantaridis, T. Hofmann, <i>Hidden Markov Support Vector 
+Machines</i>. International Conference on Machine Learning (ICML), 2003.
+</li></ul>
+
+
+</body></html>
