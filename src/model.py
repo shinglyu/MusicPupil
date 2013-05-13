@@ -121,6 +121,7 @@ class modelMultiLinearRegress(model):
       return perfFeats
 
 class modelSVMStruct(model):
+   #condiser rename to modelSVMHMM
    trainBinPath = " ../svm_hmm/svm_hmm/svm_hmm_learn"
    genBinPath= "../svm_hmm/svm_hmm/svm_hmm_classify"
    def formatLine(self, scoreFeats):
@@ -162,7 +163,7 @@ class modelSVMStruct(model):
       for pkey, pval in perfFeats.items():
          allLines = [("# " + pkey)]
          #TODO:quantize pval
-         q = quantizer.getQuantizerObj(config.defaultOutputDir+pkey+'.quant')
+         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename + pkey+'.quant')
          quantizedVal = q.quantize(pval)
          linesWQid = map(self.addQid, scoreFeatLines)
          lines = zip(map(str, quantizedVal), linesWQid) 
@@ -170,14 +171,14 @@ class modelSVMStruct(model):
          allLines = map(lambda l:" ".join(l), lines)
          config.printDebug(allLines)
 
-         svmFeatFilename = config.defaultOutputDir + pkey + ".train.dat"
+         svmFeatFilename = config.defaultOutputDir + modelFilename + pkey + ".train.dat"
          with open(svmFeatFilename, 'w') as f:
             f.writelines(map(lambda x:x+"\n", allLines))
 
          cmd = [self.trainBinPath]
          cmd.append("-c 0.01")
          cmd.append(svmFeatFilename)
-         singleModelFilename= config.defaultOutputDir + pkey + ".model.bin" 
+         singleModelFilename= config.defaultOutputDir + modelFilename +  pkey + ".model.bin" 
          cmd.append(singleModelFilename)
 
          config.printDebug(" ".join(cmd))

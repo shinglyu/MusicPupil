@@ -42,15 +42,17 @@ def extractPitchDiffPrevMidiNum(sample):
 
 @cacheByName
 def extractBeat(sample):
-   print('[WARN] Beat does not consider metadata yet, '
-         'you need music21 score with time signature to get accurate result')
+   # based on the new TouchPad recorder, splitted score will have correct beat
+   #print('[WARN] Beat does not consider metadata yet, '
+   #      'you need music21 score with time signature to get accurate result')
    notes = sample['score'].flat.notes
    return map (lambda x:x.beat, notes)
 
 @cacheByName
 def extractBeatStrength(sample):
-   print('[WARN] BeatStrength does not consider metadata yet, '
-         'you need music21 score with time signature to get accurate result')
+   # based on the new TouchPad recorder, splitted score will have correct beat
+   #print('[WARN] BeatStrength does not consider metadata yet, '
+   #      'you need music21 score with time signature to get accurate result')
    notes = sample['score'].flat.notes
    return map (lambda x:x.beatStrength, notes)
 

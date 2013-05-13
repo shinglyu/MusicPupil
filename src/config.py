@@ -1,13 +1,13 @@
 DEBUG = True
 #DEBUG = False 
-defaultTrainSampleList="../training_samples/trainSampleList.txt"
+defaultTrainSampleList= "../training_samples/trainSampleList.txt"
 unittestTrainSampleList="../training_samples/trainSampleList.txt"
-defaultGenScore="../testing_scores/test2"
+defaultGenScore=        "../testing_scores/chop_nc_phrase001"
 
 defaultTrainFeatsFilename="../output/trainFeats.json" #may need to prepend file name 
 defaultGenFeatFilename="../output/genFeat.json"
-defaultModelFilename="../output/model.bin"
-defaultOutputDir="../output/"
+defaultModelFilename=  "../output/model.bin"
+defaultOutputDir=      "../output/"
 
 scoreFeatsList = [ "PosInPhrasePercent",
                    "PitchMidiNum",
@@ -18,6 +18,7 @@ scoreFeatsList = [ "PosInPhrasePercent",
                    "DurationQNote",
                    "DurationRatioNextPercent",
                    "DurationRatioPrevPercent", ]
+
 perfFeatsList = [ "OnsetDiffQNote",
                   "DurationPercent",
                   "VelocityMidiScale",
