@@ -8,7 +8,6 @@ defaultTrainFeatsFilename="../output/trainFeats.json" #may need to prepend file 
 defaultGenFeatFilename="../output/genFeat.json"
 defaultModelFilename=  "../output/model.bin"
 defaultOutputDir=      "../output/"
-
 scoreFeatsList = [ "PosInPhrasePercent",
                    "PitchMidiNum",
                    "PitchDiffNextMidiNum",
