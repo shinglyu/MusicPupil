@@ -138,12 +138,32 @@ class modelSVMStruct(model):
          lines.append(line)
       return lines
 
-   def addQid(self, line):
-      #lineList = [line]
-      #lineList.insert(1, "qid:1")
-      return "qid:1 " + line
-      #return " ".join(map(lambda x:str(x) ,lineList))
-
+   def formatLineDirect(self, trainFeats):
+   #this handles trainFeats directly, w/out use collectFeats
+   #trainFeats structure:
+   # [
+   #  { 
+   #    name:'score1',
+   #    scoreFeats:{ feat1name:[1,2,3...], feat2name:[2,3,4...] ...},
+   #    perfFeats:{ feat1name:[1,2,3...], feat2name:[2,3,4...] ...}
+   #  }
+   #  { 
+   #     name:'score2',
+   #     scoreFeats:{ feat1name:[1,2,3...], feat2name:[2,3,4...] ...},
+   #     perfFeats:{ feat1name:[1,2,3...], feat2name:[2,3,4...] ...}
+   #  }
+   # ]
+      lines = []
+      qid = 0
+      for score in trainFeats:
+         qid += 1
+         feats = zip(*score['scoreFeats'].values()) # each elem is a note [feat1, feat2, ...]]
+         for note in feats:
+            line = "qid:" + str(qid) + " "
+            for i in range(0, len(note)):
+               line += "{0}:{1} ".format(i+1, note[i]);
+            lines.append(line)
+      return lines
 
    def train(self, trainFeatFilename, modelFilename):
       #ex filenames:
@@ -154,31 +174,30 @@ class modelSVMStruct(model):
       # +-> [svm^hmm] -> <perfFeatName>.model.bin
 
       trainFeats = featureManager.loadJson(trainFeatFilename)
-      scoreFeats = collectScoreFeats(trainFeats)
       perfFeats = collectPerfFeats(trainFeats)
       config.printDebug(perfFeats)
       #for each perfFeature, a svmFeatFilename (quantized feat for svm^hmm)
       #and singleModelFilename (model file for svm^hmm) will be saved
-      scoreFeatLines = self.formatLine(scoreFeats) 
+      #scoreFeatLines = self.formatLine(scoreFeats) 
+      scoreFeatLines = self.formatLineDirect(trainFeats) 
       for pkey, pval in perfFeats.items():
          allLines = [("# " + pkey)]
          #TODO:quantize pval
-         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename + pkey+'.quant')
+         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename +"."+ pkey+'.quant')
          quantizedVal = q.quantize(pval)
-         linesWQid = map(self.addQid, scoreFeatLines)
          lines = zip(map(str, quantizedVal), linesWQid) 
          config.printDebug(lines)
          allLines = map(lambda l:" ".join(l), lines)
          config.printDebug(allLines)
 
-         svmFeatFilename = config.defaultOutputDir + modelFilename + pkey + ".train.dat"
+         svmFeatFilename = config.defaultOutputDir + modelFilename + "." + pkey + ".train.dat"
          with open(svmFeatFilename, 'w') as f:
             f.writelines(map(lambda x:x+"\n", allLines))
 
          cmd = [self.trainBinPath]
          cmd.append("-c 0.01")
          cmd.append(svmFeatFilename)
-         singleModelFilename= config.defaultOutputDir + modelFilename +  pkey + ".model.bin" 
+         singleModelFilename= config.defaultOutputDir + modelFilename +"."+  pkey + ".model.bin" 
          cmd.append(singleModelFilename)
 
          config.printDebug(" ".join(cmd))
@@ -188,9 +207,8 @@ class modelSVMStruct(model):
       genFeats = featureManager.loadJson(genFeatFilename)
       scoreName = genFeats['name']
       scoreFeats = genFeats['scoreFeats']
-      lines = self.formatLine(scoreFeats)
+      lines = self.formatLineDirect(genFeats)
       config.printDebug(lines)
-      allLines = map(self.addQid, lines)
       allLines = map(lambda l: "0 " + l, lines)
       config.printDebug(allLines)
 
@@ -204,7 +222,7 @@ class modelSVMStruct(model):
       for featName in config.perfFeatsList:
          cmd = [self.genBinPath]
          cmd.append(scoreFeatFilename)
-         singleModelFilename= config.defaultOutputDir + featName + ".model.bin" 
+         singleModelFilename= config.defaultOutputDir + modelFilename + "." + featName + ".model.bin" 
          cmd.append(singleModelFilename)
          perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
          perfFeatFilename+= ".gen.dat"
