@@ -185,7 +185,7 @@ class modelSVMStruct(model):
          #TODO:quantize pval
          q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename +"."+ pkey+'.quant')
          quantizedVal = q.quantize(pval)
-         lines = zip(map(str, quantizedVal), linesWQid) 
+         lines = zip(map(str, quantizedVal), scoreFeatLines) 
          config.printDebug(lines)
          allLines = map(lambda l:" ".join(l), lines)
          config.printDebug(allLines)
