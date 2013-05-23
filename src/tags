@@ -5,21 +5,22 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 DEBUG	config.py	/^DEBUG = True$/;"	v
+__init__	quantizer.py	/^   def __init__(self, intvFilename):$/;"	m	class:quantizerLinear
 applyDurationPercent	perfFeature.py	/^def applyDurationPercent(inSample, perfFeats):$/;"	f
 applyFeats	featureManager.py	/^def applyFeats(inScore, perfFeats):$/;"	f
 applyOnsetDiffQNote	perfFeature.py	/^def applyOnsetDiffQNote(inSample, perfFeats):$/;"	f
 applyVelocityMidiScale	perfFeature.py	/^def applyVelocityMidiScale(inSample, perfFeats):$/;"	f
 cacheByName	perfFeature.py	/^def cacheByName(function):$/;"	f
 cacheByName	scoreFeature.py	/^def cacheByName(function):$/;"	f
+codes	testQuantizer.py	/^   codes = q.quantize(val)$/;"	v
 collectFeats	model.py	/^def collectFeats(trainFeats, featType):$/;"	f
 collectPerfFeats	model.py	/^def collectPerfFeats(trainFeats):$/;"	f
 collectScoreFeats	model.py	/^def collectScoreFeats(trainFeats):$/;"	f
-defaultGenFeatFilename	config.py	/^defaultGenFeatFilename="..\/output\/genFeat.json"$/;"	v
-defaultGenScore	config.py	/^defaultGenScore="..\/testing_scores\/test2"$/;"	v
-defaultModelFilename	config.py	/^defaultModelFilename="..\/output\/model.bin"$/;"	v
-defaultOutputDir	config.py	/^defaultOutputDir="..\/output\/"$/;"	v
-defaultTrainFeatsFilename	config.py	/^defaultTrainFeatsFilename="..\/output\/trainFeats.json" #may need to prepend file name $/;"	v
-defaultTrainSampleList	config.py	/^defaultTrainSampleList="..\/training_samples\/trainSampleList.txt"$/;"	v
+defaultGenScore	config.py	/^defaultGenScore=        "..\/testing_scores\/chop_nc_phrase001"$/;"	v
+defaultOutputDir	config.py	/^defaultOutputDir=      "..\/output\/"$/;"	v
+defaultTrainSampleList	config.py	/^defaultTrainSampleList= "..\/training_samples\/trainSampleList.txt"$/;"	v
+dequantize	quantizer.py	/^   def dequantize(feats):$/;"	m	class:quantizer
+dequantize	quantizer.py	/^   def dequantize(self, code):$/;"	m	class:quantizerLinear
 dummyFunc	utest_model.py	/^def dummyFunc():$/;"	f
 extractBeat	scoreFeature.py	/^def extractBeat(sample):$/;"	f
 extractBeatStrength	scoreFeature.py	/^def extractBeatStrength(sample):$/;"	f
@@ -36,29 +37,63 @@ extractPitchMidiNum	scoreFeature.py	/^def extractPitchMidiNum(sample):$/;"	f
 extractPosInPhrasePercent	scoreFeature.py	/^def extractPosInPhrasePercent(sample):$/;"	f
 extractTrainFeat	featureManager.py	/^def extractTrainFeat(sample):$/;"	f
 extractVelocityMidiScale	perfFeature.py	/^def extractVelocityMidiScale(sample):$/;"	f
-genMultiLinearRegress	model.py	/^def genMultiLinearRegress(genFeats, modelFilename):$/;"	f
-genMusic	musicGenerator.py	/^def genMusic(genScore, perfFeats, outputDir):$/;"	f
-genPerfFeats	model.py	/^def genPerfFeats(genFeatFilename, modelFilename):$/;"	f
-getModelFunc	model.py	/^def getModelFunc(mode):$/;"	f
+findCode	quantizer.py	/^   def findCode(self, value, intv):$/;"	m	class:quantizerLinear
+formatLine	model.py	/^   def formatLine(self, scoreFeats):$/;"	m	class:modelSVMStruct
+formatLineDirect	model.py	/^   def formatLineDirect(self, trainFeats):$/;"	m	class:modelSVMStruct
+gen	model.py	/^   def gen(self, args):$/;"	m	class:model
+gen	model.py	/^   def gen(self, args):$/;"	m	class:modelSVMStruct
+gen	model.py	/^   def gen(self, genFeatFilename, modelFilename):$/;"	m	class:modelMultiLinearRegress
+genBinPath	model.py	/^   genBinPath= "..\/svm_hmm\/svm_hmm\/svm_hmm_classify"$/;"	v	class:modelSVMStruct
+genMusic	musicGenerator.py	/^def genMusic(genScore, perfFeats, args):$/;"	f
+getGenFeatFilename	config.py	/^def getGenFeatFilename(args):$/;"	f
+getGenInputFilename	model.py	/^   def getGenInputFilename(self, args):$/;"	m	class:modelSVMStruct
+getGenOutputFilename	model.py	/^   def getGenOutputFilename(self, args, featName):$/;"	m	class:modelSVMStruct
+getGenSampleName	config.py	/^def getGenSampleName(genSampleFilename):$/;"	f
+getModelFilename	config.py	/^def getModelFilename(args):$/;"	f
+getModelObj	model.py	/^def getModelObj():$/;"	f
 getMusicOutputFunc	musicGenerator.py	/^def getMusicOutputFunc():$/;"	f
+getQuantizeFilename	model.py	/^   def getQuantizeFilename(self, args, featName):$/;"	m	class:modelSVMStruct
+getQuantizerObj	quantizer.py	/^def getQuantizerObj(intvFilename):$/;"	f
+getSingleModelFilename	model.py	/^   def getSingleModelFilename(self, args, featName):$/;"	m	class:modelSVMStruct
+getTrainFeatFilename	config.py	/^def getTrainFeatFilename(args):$/;"	f
+getTrainInputFilename	model.py	/^   def getTrainInputFilename(self, args, featName):$/;"	m	class:modelSVMStruct
+getTrainSampleName	config.py	/^def getTrainSampleName(trainSampleFilename):$/;"	f
+intvFilename	quantizer.py	/^   intvFilename = None;$/;"	v	class:quantizerLinear
 loadGenScore	sampleLoader.py	/^def loadGenScore(sampleName):$/;"	f
 loadJson	featureManager.py	/^def loadJson(filename):$/;"	f
+loadMetadata	sampleLoader.py	/^def loadMetadata(metaName):$/;"	f
 loadTrainSample	sampleLoader.py	/^def loadTrainSample(sampleName):$/;"	f
 main	musicPupilGen.py	/^def main():$/;"	f
 main	musicPupilTrain.py	/^def main():$/;"	f
+model	model.py	/^class model:$/;"	c
 model	utest_model.py	/^model = model.trainMultiLinearRegress(trainFeats, config.defaultModelFilename)$/;"	v
-modelFuncName	config.py	/^modelFuncName = [ "MultiLinearRegress",$/;"	v
+modelFuncName	config.py	/^modelFuncName = [ #"modelMultiLinearRegress",$/;"	v
+modelMultiLinearRegress	model.py	/^class modelMultiLinearRegress(model):$/;"	c
+modelSVMStruct	model.py	/^class modelSVMStruct(model):$/;"	c
 musicOutputFormat	config.py	/^musicOutputFormat= [ "Midi",$/;"	v
+numOfIntvs	quantizer.py	/^   numOfIntvs = 1024;$/;"	v	class:quantizerLinear
 outputMidi	musicGenerator.py	/^def outputMidi(outSamp, outputDir):$/;"	f
 parseFileList	sampleLoader.py	/^def parseFileList(inputList):$/;"	f
 perfFeatsList	config.py	/^perfFeatsList = [ "OnsetDiffQNote",$/;"	v
 printDebug	config.py	/^def printDebug(string):$/;"	f
+q	testQuantizer.py	/^   q = getQuantizerObj('..\/output\/testQuantizer.'+ key +'.json')$/;"	v
+quantize	quantizer.py	/^   def quantize(feats):$/;"	m	class:quantizer
+quantize	quantizer.py	/^   def quantize(self, feat):$/;"	m	class:quantizerLinear
+quantizer	quantizer.py	/^class quantizer:$/;"	c
+quantizerLinear	quantizer.py	/^class quantizerLinear(quantizer):$/;"	c
+quantizerName	config.py	/^quantizerName= [ "quantizerLinear",$/;"	v
+reconstructValue	quantizer.py	/^   def reconstructValue(self, code, intv):$/;"	m	class:quantizerLinear
+reconsts	testQuantizer.py	/^   reconsts = q.dequantize(codes)$/;"	v
+sanitizeDirPath	config.py	/^def sanitizeDirPath(dirPath):$/;"	f
 saveJson	featureManager.py	/^def saveJson(featList, filename):$/;"	f
 scoreFeatsList	config.py	/^scoreFeatsList = [ "PosInPhrasePercent",$/;"	v
+testInput	testQuantizer.py	/^testInput = {$/;"	v
+train	model.py	/^   def train(self, args):$/;"	m	class:model
+train	model.py	/^   def train(self, args):$/;"	m	class:modelSVMStruct
+train	model.py	/^   def train(self, trainFeatFilename, modelFilename):$/;"	m	class:modelMultiLinearRegress
+trainBinPath	model.py	/^   trainBinPath = " ..\/svm_hmm\/svm_hmm\/svm_hmm_learn"$/;"	v	class:modelSVMStruct
 trainFeat	utest_featureManager.py	/^   trainFeat = featureManager.extractTrainFeat(trainSamp)$/;"	v
 trainFeats	utest_model.py	/^trainFeats = featureManager.loadJson(config.defaultTrainFeatsFilename)$/;"	v
-trainModel	model.py	/^def trainModel(trainFeatFilename, modelFilename):$/;"	f
-trainMultiLinearRegress	model.py	/^def trainMultiLinearRegress(trainFeats, modelFilename):$/;"	f
 trainSamp	utest_featureManager.py	/^   trainSamp = sampleLoader.loadTrainSample(trainSampFilename)$/;"	v
 trainSampList	utest_featureManager.py	/^trainSampList = sampleLoader.parseFileList(config.unittestTrainSampleList)$/;"	v
 unittestTrainSampleList	config.py	/^unittestTrainSampleList="..\/training_samples\/trainSampleList.txt"$/;"	v

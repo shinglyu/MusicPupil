@@ -1,0 +1,86 @@
+config.py:defaultTrainFeatsFilename="../output/trainFeats.json" #may need to prepend file name 
+config.py:defaultGenFeatFilename="../output/genFeat.json"
+config.py:defaultModelFilename=  "../output/model.bin"
+二進位格式檔案 config.pyc 符合
+modelMultiLinearRegress.R:trainMultiLinearRegress<- function(fmu, perfFeats, scoreFeats, modelFilename){
+modelMultiLinearRegress.R:   save(model, file=modelFilename)
+modelMultiLinearRegress.R:genMultiLinearRegress<- function(scoreFeats, modelFilename){
+modelMultiLinearRegress.R:   load(modelFilename) #loads "model"
+model.py:   def train(self, trainFeatFilename, modelFilename):
+model.py:      #train the model and save to modelFilename
+model.py:   def gen(self, genFeatFilename, modelFilename):
+model.py:      #load modelFilename and return perfFeats
+model.py:   def train(self, trainFeatFilename, modelFilename):
+model.py:      trainFeats = featureManager.loadJson(trainFeatFilename)
+model.py:      r.assign('modelFilename',modelFilename)
+model.py:      r('trainMultiLinearRegress(f, perfFeats, scoreFeats, modelFilename)')
+model.py:   def gen(self, genFeatFilename, modelFilename):
+model.py:      genFeats = featureManager.loadJson(genFeatFilename)
+model.py:      r.assign('modelFilename',modelFilename)
+model.py:      perfFeats = r('perfFeats<-genMultiLinearRegress(scoreFeats, modelFilename)')
+model.py:   def train(self, trainFeatFilename, modelFilename):
+model.py:      trainFeats = featureManager.loadJson(trainFeatFilename)
+model.py:      #for each perfFeature, a svmFeatFilename (quantized feat for svm^hmm)
+model.py:      #and singleModelFilename (model file for svm^hmm) will be saved
+model.py:         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename +"."+ pkey+'.quant')
+model.py:         svmFeatFilename = config.defaultOutputDir + modelFilename + "." + pkey + ".train.dat"
+model.py:         with open(svmFeatFilename, 'w') as f:
+model.py:         cmd.append(svmFeatFilename)
+model.py:         singleModelFilename= config.defaultOutputDir + modelFilename +"."+  pkey + ".model.bin" 
+model.py:         cmd.append(singleModelFilename)
+model.py:   def gen(self, genFeatFilename, modelFilename):
+model.py:      genFeats = featureManager.loadJson(genFeatFilename)
+model.py:      scoreFeatFilename = config.defaultOutputDir + scoreName
+model.py:      scoreFeatFilename += ".scoreFeats.gen.dat"
+model.py:      with open(scoreFeatFilename, 'w') as f:
+model.py:         cmd.append(scoreFeatFilename)
+model.py:         singleModelFilename= config.defaultOutputDir + modelFilename + "." + featName + ".model.bin" 
+model.py:         cmd.append(singleModelFilename)
+model.py:         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
+model.py:         perfFeatFilename+= ".gen.dat"
+model.py:         cmd.append(perfFeatFilename)
+model.py:         #TODO: read all perfFeatFilename, transform to dict and return 
+model.py:         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
+model.py:         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
+model.py:         perfFeatFilename+= ".gen.dat"
+model.py:         with open(perfFeatFilename, 'r') as f:
+model.py:         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename + "." + featName+'.quant')
+二進位格式檔案 model.pyc 符合
+musicGenerator.py:   outputFilename = outputDir + outSamp['name'] + '.expressive.mid'
+musicGenerator.py:   config.printDebug(outputFilename)
+musicGenerator.py:   outScore.write('midi', outputFilename)
+musicGenerator.py:   #midifile.open(outputFilename, 'wb')
+二進位格式檔案 musicGenerator.pyc 符合
+musicPupilGen.py:   parser.add_argument("modelFilename", nargs="?" , 
+musicPupilGen.py:                       default=config.defaultModelFilename
+musicPupilGen.py:   featureManager.saveJson(genFeat, config.defaultGenFeatFilename)
+musicPupilGen.py:   #perfFeats = model.genPerfFeats(config.defaultGenFeatFilename, args.modelFilename)
+musicPupilGen.py:   perfFeats = m.gen(config.defaultGenFeatFilename, args.modelFilename)
+musicPupilTrain.py:                       default=config.defaultModelFilename
+musicPupilTrain.py:   for trainSampFilename in trainSampList:
+musicPupilTrain.py:      trainSamp = sampleLoader.loadTrainSample(trainSampFilename)
+musicPupilTrain.py:   featureManager.saveJson(trainFeatsList, config.defaultTrainFeatsFilename);
+musicPupilTrain.py:   m.train(config.defaultTrainFeatsFilename, args.modelName);
+quantizer.py:def getQuantizerObj(intvFilename):
+quantizer.py:   return className(intvFilename)
+quantizer.py:   intvFilename = None;
+quantizer.py:   def __init__(self, intvFilename):
+quantizer.py:      self.intvFilename = intvFilename
+quantizer.py:      with open(self.intvFilename, 'w') as f:
+quantizer.py:      with open(self.intvFilename, 'r') as f:
+二進位格式檔案 quantizer.pyc 符合
+tags:defaultGenFeatFilename	config.py	/^defaultGenFeatFilename="..\/output\/genFeat.json"$/;"	v
+tags:defaultModelFilename	config.py	/^defaultModelFilename="..\/output\/model.bin"$/;"	v
+tags:defaultTrainFeatsFilename	config.py	/^defaultTrainFeatsFilename="..\/output\/trainFeats.json" #may need to prepend file name $/;"	v
+tags:genMultiLinearRegress	model.py	/^def genMultiLinearRegress(genFeats, modelFilename):$/;"	f
+tags:genPerfFeats	model.py	/^def genPerfFeats(genFeatFilename, modelFilename):$/;"	f
+tags:model	utest_model.py	/^model = model.trainMultiLinearRegress(trainFeats, config.defaultModelFilename)$/;"	v
+tags:trainFeats	utest_model.py	/^trainFeats = featureManager.loadJson(config.defaultTrainFeatsFilename)$/;"	v
+tags:trainModel	model.py	/^def trainModel(trainFeatFilename, modelFilename):$/;"	f
+tags:trainMultiLinearRegress	model.py	/^def trainMultiLinearRegress(trainFeats, modelFilename):$/;"	f
+tags:trainSamp	utest_featureManager.py	/^   trainSamp = sampleLoader.loadTrainSample(trainSampFilename)$/;"	v
+utest_featureManager.py:for trainSampFilename in trainSampList:
+utest_featureManager.py:   print("[INFO] Testing training sample: " + trainSampFilename)
+utest_featureManager.py:   trainSamp = sampleLoader.loadTrainSample(trainSampFilename)
+utest_model.py:trainFeats = featureManager.loadJson(config.defaultTrainFeatsFilename)
+utest_model.py:model = model.trainMultiLinearRegress(trainFeats, config.defaultModelFilename)

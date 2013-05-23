@@ -2,6 +2,8 @@ import featureManager
 import config
 import music21
 
+
+
 def getMusicOutputFunc():
    try:
       if len(config.musicOutputFormat) != 1:
@@ -12,13 +14,14 @@ def getMusicOutputFunc():
       print("[ERROR] You can only select one music output format function in config.py")
       raise 
 
-def genMusic(genScore, perfFeats, outputDir):
+def genMusic(genScore, perfFeats, args):
    outScore = featureManager.applyFeats(genScore, perfFeats)
    musicOutputFunc = getMusicOutputFunc()
-   musicOutputFunc(outScore, outputDir)
+   musicOutputFunc(outScore, args)
 
-def outputMidi(outSamp, outputDir):
-   outputFilename = outputDir + outSamp['name'] + '.expressive.mid'
+def outputMidi(outSamp, args):
+   outputFilename = config.sanitizeDirPath(args.outputDir) 
+   outputFilename += config.getGenSampleName(args.input) + '.expr.mid'
    config.printDebug(outputFilename)
    outScore = outSamp['score']
    outScore.write('midi', outputFilename)

@@ -54,11 +54,11 @@ def collectFeats(trainFeats, featType):
    return collectedFeats
 
 class model:
-   def train(self, trainFeatFilename, modelFilename):
+   def train(self, args):
       #see collectFeats() for trainFeat format
       #train the model and save to modelFilename
       raise NotImplementedError("Model subclass must implement this function.")
-   def gen(self, genFeatFilename, modelFilename):
+   def gen(self, args):
       #genFeat format:
       # { 
       #    "scoreFeats": { "feat1":[1,2,3...], "feat2":[3,4,3...]}
@@ -164,8 +164,47 @@ class modelSVMStruct(model):
                line += "{0}:{1} ".format(i+1, note[i]);
             lines.append(line)
       return lines
+   def getQuantizeFilename(self, args, featName):
+      if hasattr(args, "modelFilename"): # for gen case
+         quantFilename = args.modelFilename
+      else: # for train case
+         quantFilename = config.sanitizeDirPath(args.outputDir)
+         quantFilename += config.getModelFilename(args)
+      quantFilename += "." + featName + ".quant"
+      return quantFilename
 
-   def train(self, trainFeatFilename, modelFilename):
+   def getTrainInputFilename(self, args, featName):
+      svmFilename = config.sanitizeDirPath(args.outputDir)
+      svmFilename += config.getModelFilename(args)
+      svmFilename += "." + featName + ".train.input.dat"
+      return svmFilename
+
+   def getGenInputFilename(self, args):
+      svmFilename = config.sanitizeDirPath(args.outputDir)
+      svmFilename += config.getGenSampleName(args.input) + "."
+      svmFilename += config.modelFuncName[0] + "."
+      svmFilename += "gen.input.dat"
+      return svmFilename
+
+   def getGenOutputFilename(self, args, featName):
+      svmFilename = config.sanitizeDirPath(args.outputDir)
+      svmFilename += config.getGenSampleName(args.input) + "."
+      svmFilename += config.modelFuncName[0] + "."
+      svmFilename += featName + "."
+      svmFilename += "gen.output.dat"
+      return svmFilename
+
+   def getSingleModelFilename(self, args, featName):
+      if hasattr(args, "modelFilename"): # for gen case
+         singleModelFilename = args.modelFilename
+      else: # for train case
+         singleModelFilename = config.sanitizeDirPath(args.outputDir)
+         singleModelFilename += config.getModelFilename(args)
+      singleModelFilename += "." + featName + ".model.bin"
+      return singleModelFilename
+
+
+   def train(self, args):
       #ex filenames:
       # trainFeat.json -> [quantizer] -> <perfFeatName>.train.dat 
       #                       |                                 |
@@ -173,7 +212,7 @@ class modelSVMStruct(model):
       # +-------------------------------------------------------+
       # +-> [svm^hmm] -> <perfFeatName>.model.bin
 
-      trainFeats = featureManager.loadJson(trainFeatFilename)
+      trainFeats = featureManager.loadJson(config.getTrainFeatFilename(args))
       perfFeats = collectPerfFeats(trainFeats)
       config.printDebug(perfFeats)
       #for each perfFeature, a svmFeatFilename (quantized feat for svm^hmm)
@@ -183,49 +222,49 @@ class modelSVMStruct(model):
       for pkey, pval in perfFeats.items():
          allLines = [("# " + pkey)]
          #TODO:quantize pval
-         q = quantizer.getQuantizerObj(config.defaultOutputDir+ modelFilename +"."+ pkey+'.quant')
+         q = quantizer.getQuantizerObj(self.getQuantizeFilename(args, pkey))
          quantizedVal = q.quantize(pval)
          lines = zip(map(str, quantizedVal), scoreFeatLines) 
          config.printDebug(lines)
          allLines = map(lambda l:" ".join(l), lines)
          config.printDebug(allLines)
 
-         svmFeatFilename = config.defaultOutputDir + modelFilename + "." + pkey + ".train.dat"
+         svmFeatFilename = self.getTrainInputFilename(args, pkey)
          with open(svmFeatFilename, 'w') as f:
             f.writelines(map(lambda x:x+"\n", allLines))
 
          cmd = [self.trainBinPath]
          cmd.append("-c 0.01")
          cmd.append(svmFeatFilename)
-         singleModelFilename= config.defaultOutputDir + modelFilename +"."+  pkey + ".model.bin" 
+         singleModelFilename = self.getSingleModelFilename(args,pkey)
          cmd.append(singleModelFilename)
 
          config.printDebug(" ".join(cmd))
          subprocess.call(" ".join(cmd), shell=True)
 
-   def gen(self, genFeatFilename, modelFilename):
-      genFeats = featureManager.loadJson(genFeatFilename)
+   def gen(self, args):
+      genFeats = featureManager.loadJson(config.getGenFeatFilename(args))
       scoreName = genFeats['name']
       scoreFeats = genFeats['scoreFeats']
-      lines = self.formatLineDirect(genFeats)
+      #wrap genFeats in [] to match data structure in train
+      lines = self.formatLineDirect([genFeats]) 
       config.printDebug(lines)
       allLines = map(lambda l: "0 " + l, lines)
       config.printDebug(allLines)
 
       #TODO: collect filenames
-      scoreFeatFilename = config.defaultOutputDir + scoreName
-      scoreFeatFilename += ".scoreFeats.gen.dat"
 
-      with open(scoreFeatFilename, 'w') as f:
+      SVMGenInputFilename = self.getGenInputFilename(args)
+
+      with open(SVMGenInputFilename, 'w') as f:
          f.writelines(map(lambda x:x+"\n", allLines))
 
       for featName in config.perfFeatsList:
          cmd = [self.genBinPath]
-         cmd.append(scoreFeatFilename)
-         singleModelFilename= config.defaultOutputDir + modelFilename + "." + featName + ".model.bin" 
+         cmd.append(SVMGenInputFilename)
+         singleModelFilename= self.getSingleModelFilename(args, featName)
          cmd.append(singleModelFilename)
-         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
-         perfFeatFilename+= ".gen.dat"
+         perfFeatFilename= self.getGenOutputFilename(args, featName)
          cmd.append(perfFeatFilename)
 
          config.printDebug(" ".join(cmd))
@@ -237,13 +276,11 @@ class modelSVMStruct(model):
       perfFeats = {}
       for featName in config.perfFeatsList:
          #TODO: put all filename definition in one place
-         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
-         perfFeatFilename= config.defaultOutputDir + scoreName + '.' +  featName 
-         perfFeatFilename+= ".gen.dat"
+         #perfFeatFilename= self.getGenOutputFilename(args, featName)
          with open(perfFeatFilename, 'r') as f:
              lines = f.readlines()
          #dequantize
-         q = quantizer.getQuantizerObj(config.defaultOutputDir+featName+'.quant')
+         q = quantizer.getQuantizerObj(self.getQuantizeFilename(args, featName))
          realVals= q.dequantize(lines)
          #feat = map(float, lines)
          perfFeats[featName]=realVals
