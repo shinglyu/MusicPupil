@@ -122,8 +122,10 @@ class modelMultiLinearRegress(model):
 
 class modelSVMStruct(model):
    #condiser rename to modelSVMHMM
-   trainBinPath = " ../svm_hmm/svm_hmm/svm_hmm_learn"
-   genBinPath= "../svm_hmm/svm_hmm/svm_hmm_classify"
+   #trainBinPath = " ../svm_hmm/svm_hmm/svm_hmm_learn"
+   #genBinPath= "../svm_hmm/svm_hmm/svm_hmm_classify"
+   trainBinPath = " ~/svm_hmm/svm_hmm/svm_hmm_learn"
+   genBinPath= "~/svm_hmm/svm_hmm/svm_hmm_classify"
    def formatLine(self, scoreFeats):
       #from {feat1:[1,2,3...], feat2:[4,5,6...]} to [[1,4], [2,5], 3,6]...]
       #i.e from one feature one row to one note one row
@@ -287,10 +289,5 @@ class modelSVMStruct(model):
 
       config.printDebug(perfFeats)
       return perfFeats
-
-
-
-
-
 
 

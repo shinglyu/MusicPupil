@@ -4,7 +4,15 @@ by: Shing Lyu
 Required Package:
    - python 2.7
    - music21-1.3.0
+      - Untar music21 tar file
+      - Run "python installer.py"
+      - Run "python setup.py install"
+      - May need to run from scratch if arch (x86/64) is changed.
    - rpy (python-rpy in debian repo)
+   - SVM_HMM 
+      - Untar svm_hmm
+      - "make"
+      - Clean and re-make when arch (x86/64) has changed
 
 Usage:
    - Performance model training: 

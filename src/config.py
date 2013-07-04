@@ -1,7 +1,7 @@
 import os.path
 
-DEBUG = True
-#DEBUG = False 
+#DEBUG = True
+DEBUG = False 
 defaultTrainSampleList= "../training_samples/trainSampleList.txt"
 unittestTrainSampleList="../training_samples/trainSampleList.txt"
 defaultGenScore=        "../testing_scores/chop_nc_phrase001"
@@ -50,24 +50,24 @@ def sanitizeDirPath(dirPath):
 def getTrainSampleName(trainSampleFilename):
    return os.path.splitext(os.path.basename(trainSampleFilename))[0]
 
-def getGenSampleName(genSampleFilename):
-   return os.path.basename(genSampleFilename)
-
 def getTrainInFeatFilename(args):
    trainFeatsFilename = sanitizeDirPath(args.outputDir)
    trainFeatsFilename += getTrainSampleName(args.inputList)
    trainFeatsFilename += ".train.allFeats.json"
    return trainFeatsFilename
 
+def getGenSampleName(genSampleFilename):
+   return os.path.basename(genSampleFilename)
+
 def getGenInFeatFilename(args):
    trainFeatsFilename = sanitizeDirPath(args.outputDir)
-   trainFeatsFilename += getTrainSampleName(args.input)
+   trainFeatsFilename += getGenSampleName(args.input)
    trainFeatsFilename += ".gen.scoreFeats.json"
    return trainFeatsFilename
 
 def getGenOutFeatFilename(args):
    trainFeatsFilename = sanitizeDirPath(args.outputDir)
-   trainFeatsFilename += getTrainSampleName(args.input)
+   trainFeatsFilename += getGenSampleName(args.input)
    trainFeatsFilename += ".gen.perfFeats.json"
    return trainFeatsFilename
 

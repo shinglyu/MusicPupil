@@ -40,6 +40,4 @@ def saveJson(featList, filename):
 def loadJson(filename):
    with open(filename, 'r') as f:
       return simplejson.load(f, encoding='utf-8')
-   
-
 

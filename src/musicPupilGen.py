@@ -31,7 +31,7 @@ def main():
    #perfFeats = model.genPerfFeats(config.defaultGenFeatFilename, args.modelFilename)
    m = model.getModelObj()
    perfFeats = m.gen(args)
-   featureManager.saveJson(perfFeat, config.getGenOutFeatFilename(args))
+   featureManager.saveJson(perfFeats, config.getGenOutFeatFilename(args))
 
    musicGenerator.genMusic(genScore, args)
 
