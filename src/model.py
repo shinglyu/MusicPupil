@@ -212,7 +212,7 @@ class modelSVMStruct(model):
       # +-------------------------------------------------------+
       # +-> [svm^hmm] -> <perfFeatName>.model.bin
 
-      trainFeats = featureManager.loadJson(config.getTrainFeatFilename(args))
+      trainFeats = featureManager.loadJson(config.getTrainInFeatFilename(args))
       perfFeats = collectPerfFeats(trainFeats)
       config.printDebug(perfFeats)
       #for each perfFeature, a svmFeatFilename (quantized feat for svm^hmm)
@@ -243,7 +243,7 @@ class modelSVMStruct(model):
          subprocess.call(" ".join(cmd), shell=True)
 
    def gen(self, args):
-      genFeats = featureManager.loadJson(config.getGenFeatFilename(args))
+      genFeats = featureManager.loadJson(config.getGenInFeatFilename(args))
       scoreName = genFeats['name']
       scoreFeats = genFeats['scoreFeats']
       #wrap genFeats in [] to match data structure in train

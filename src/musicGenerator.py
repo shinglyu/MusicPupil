@@ -14,7 +14,8 @@ def getMusicOutputFunc():
       print("[ERROR] You can only select one music output format function in config.py")
       raise 
 
-def genMusic(genScore, perfFeats, args):
+def genMusic(genScore, args):
+   perfFeats = featureManager.loadJson(config.getGenOutFeatFilename(args))
    outScore = featureManager.applyFeats(genScore, perfFeats)
    musicOutputFunc = getMusicOutputFunc()
    musicOutputFunc(outScore, args)

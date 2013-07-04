@@ -53,16 +53,22 @@ def getTrainSampleName(trainSampleFilename):
 def getGenSampleName(genSampleFilename):
    return os.path.basename(genSampleFilename)
 
-def getTrainFeatFilename(args):
+def getTrainInFeatFilename(args):
    trainFeatsFilename = sanitizeDirPath(args.outputDir)
    trainFeatsFilename += getTrainSampleName(args.inputList)
-   trainFeatsFilename += ".trainFeats.json"
+   trainFeatsFilename += ".train.allFeats.json"
    return trainFeatsFilename
 
-def getGenFeatFilename(args):
+def getGenInFeatFilename(args):
    trainFeatsFilename = sanitizeDirPath(args.outputDir)
    trainFeatsFilename += getTrainSampleName(args.input)
-   trainFeatsFilename += ".genFeats.json"
+   trainFeatsFilename += ".gen.scoreFeats.json"
+   return trainFeatsFilename
+
+def getGenOutFeatFilename(args):
+   trainFeatsFilename = sanitizeDirPath(args.outputDir)
+   trainFeatsFilename += getTrainSampleName(args.input)
+   trainFeatsFilename += ".gen.perfFeats.json"
    return trainFeatsFilename
 
 def getModelFilename(args):

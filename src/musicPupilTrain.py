@@ -33,12 +33,12 @@ def main():
       trainFeat = featureManager.extractTrainFeat(trainSamp)
       trainFeatsList.append(trainFeat)
 
-   trainFeatFilename = config.getTrainFeatFilename(args)
+   trainFeatFilename = config.getTrainInFeatFilename(args)
    featureManager.saveJson(trainFeatsList, trainFeatFilename);
 
    m = model.getModelObj();
    #modelName = config.getModelFilename(args)
-   m.train(args); #load features from config.getTrainFeatFilename(args)
+   m.train(args); #load features from config.getTrainInFeatFilename(args)
    #model.saveModel(modelParam, args.modelName)
 
 
