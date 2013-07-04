@@ -1,3 +1,0 @@
-measureStart   4
-beatsInMeasure 4 
-

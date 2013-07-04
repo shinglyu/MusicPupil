@@ -1,8 +1,0 @@
- chop_nc_phrase001.mid
-kv310_phrase001_music.mid
-kv310_phrase002_music.mid
-kv310_phrase003_music.mid
-kv310_phrase004_music.mid
-kv310_phrase005_music.mid
-kv331_phrase001_score.mid
-mozart_turkish_march_kv331.mid

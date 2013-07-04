@@ -1,4 +1,5 @@
 data/*.mat
-out/*mp3
-out/*mid
+output/*
+output*/*
+output*/*
 

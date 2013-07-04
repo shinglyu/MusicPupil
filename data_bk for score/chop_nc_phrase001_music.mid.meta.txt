@@ -1,3 +1,0 @@
-measureStart   3
-beatsInMeasure 6 
-

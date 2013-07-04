@@ -44,6 +44,7 @@ def extractDurationPercent(sample):
       for s, p in zip(scoreNotes, perfNotes):
          config.printDebug('s duration: '+ str(s.duration.quarterLength))
          config.printDebug('p duration: '+ str(p.duration.quarterLength))
+   # maybe we should use (p-s)/s
    durationPercents = [p.duration.quarterLength / s.duration.quarterLength 
                        for s, p in zip(scoreNotes, perfNotes)]
    return durationPercents

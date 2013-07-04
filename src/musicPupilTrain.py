@@ -38,7 +38,7 @@ def main():
 
    m = model.getModelObj();
    #modelName = config.getModelFilename(args)
-   m.train(args);
+   m.train(args); #load features from config.getTrainFeatFilename(args)
    #model.saveModel(modelParam, args.modelName)
 
 

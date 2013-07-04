@@ -1,0 +1,6 @@
+fostr32.1
+fostr32.2
+fostr32.3
+fostr32.4
+fostr32.5
+fostr32.6
