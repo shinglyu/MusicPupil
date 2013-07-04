@@ -15,7 +15,8 @@ def getMusicOutputFunc():
       raise 
 
 def genMusic(genScore, args):
-   perfFeats = featureManager.loadJson(config.getGenOutFeatFilename(args))
+   sample = featureManager.loadJson(config.getGenOutFeatFilename(args))
+   perfFeats = sample['perfFeats']
    outScore = featureManager.applyFeats(genScore, perfFeats)
    musicOutputFunc = getMusicOutputFunc()
    musicOutputFunc(outScore, args)

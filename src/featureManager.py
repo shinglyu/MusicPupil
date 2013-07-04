@@ -4,16 +4,22 @@ import perfFeature
 #import json
 import simplejson
 
+def formatFeatFile(name, scoreFeats, perfFeats):
+   #reused in model.py gen()
+   return {'name':name, 'scoreFeats':scoreFeats, 'perfFeats':perfFeats} 
+
 def extractTrainFeat(sample):
    name = sample['name']
    scoreFeats = extractFeats(sample, 'score')
    perfFeats = extractFeats(sample, 'perf')
-   return {'name':name, 'scoreFeats':scoreFeats, 'perfFeats':perfFeats} 
+   #return {'name':name, 'scoreFeats':scoreFeats, 'perfFeats':perfFeats} 
+   return formatFeatFile(name, scoreFeats, perfFeats)
 
 def extractGenFeat(sample):
    name = sample['name']
    scoreFeats = extractFeats(sample, 'score')
-   return {'name':name, 'scoreFeats':scoreFeats} 
+   #return {'name':name, 'scoreFeats':scoreFeats} 
+   return formatFeatFile(name, scoreFeats, {})
 
 def extractFeats(sample, featType):
    feats={}

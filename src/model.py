@@ -288,6 +288,7 @@ class modelSVMStruct(model):
          perfFeats[featName]=realVals
 
       config.printDebug(perfFeats)
-      return perfFeats
+      return featureManager.formatFeatFile(scoreName, {}, perfFeats)
+      #return perfFeats
 
 
