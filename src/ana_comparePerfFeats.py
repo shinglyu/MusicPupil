@@ -17,18 +17,16 @@ import model
 import os 
 import fnmatch 
 import simplejson
+import argparse
 
 
 #realPerfDir = "../training_samples/"
 DEBUG = False; #
-perfDir= "../output20130713/"
+defaultDir= "../output20130713/"
 realPerfExt= "*.train.allFeats.json"
 genPerfExt= "*.gen.perfFeats.json"
 outputFilename = "comparePerfFeats.txt"
 
-filenames = os.listdir(perfDir)
-realPerfFilnames = fnmatch.filter(filenames, realPerfExt)
-genPerfFilnames  = fnmatch.filter(filenames, genPerfExt)
 
 def parseColNames(feats):
    collectedFeats = model.collectPerfFeats(feats);
@@ -53,28 +51,39 @@ def parseLines(feats, group ):
    return lines
 
 #main
+parser = argparse.ArgumentParser()
+parser.add_argument("dir", #nargs="1" , 
+                   help="Path to all feature files.",
+                   default=defaultDir
+                  )
+args = parser.parse_args()
+
+filenames = os.listdir(args.dir)
+realPerfFilnames = fnmatch.filter(filenames, realPerfExt)
+genPerfFilnames  = fnmatch.filter(filenames, genPerfExt)
+
 lines = []
 
 #prepare col names
-feat = featureManager.loadJson(perfDir + realPerfFilnames[0]);
+feat = featureManager.loadJson(args.dir + realPerfFilnames[0]);
 lines += parseColNames(feat)
 
 for realPerfFilname in realPerfFilnames:
    if (DEBUG):
       lines += ["# " + realPerfFilname]
-   realFeats = featureManager.loadJson(perfDir + realPerfFilname);
+   realFeats = featureManager.loadJson(args.dir + realPerfFilname);
    lines += parseLines(realFeats, "real")
 
    
 for genPerfFilname in genPerfFilnames:
    if (DEBUG):
       lines += ["# " + genPerfFilname]
-   genFeats = featureManager.loadJson(perfDir + genPerfFilname);
+   genFeats = featureManager.loadJson(args.dir + genPerfFilname);
    lines += parseLines(genFeats, "gen")
 
 for line in lines:
    print(line)
 
-with open(perfDir + outputFilename, 'w') as f:
+with open(args.dir + outputFilename, 'w') as f:
     f.writelines('\n'.join(lines))
 

@@ -1,5 +1,8 @@
 useSvg = FALSE 
-dir = "../output20130713/"
+args <- commandArgs()
+print(args)
+
+if (length(args) >= 6){ dir = args[6]} else{ dir = "../output20130713/"} 
 filename = "comparePerfFeats"
 
 #perf <- read.table("../output20130703/allPerfFeats.txt", header=TRUE, sep="\t", row.names=NULL)
