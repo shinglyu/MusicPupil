@@ -61,10 +61,12 @@ class model:
    def gen(self, args):
       #genFeat format:
       # { 
-      #    "scoreFeats": { "feat1":[1,2,3...], "feat2":[3,4,3...]}
+      #    {"scoreFeats": { "feat1":[1,2,3...], "feat2":[3,4,3...]}}
       # }
       #perfFeats:
-      # { "feat1":[1,2,3...], "feat2":[3,4,3...]}
+      # { 
+      #    { "feat1":[1,2,3...], "feat2":[3,4,3...]}
+      # }
       #
       #load modelFilename and return perfFeats
       raise NotImplementedError("Model subclass must implement this function.")
@@ -246,10 +248,11 @@ class modelSVMStruct(model):
 
    def gen(self, args):
       genFeats = featureManager.loadJson(config.getGenInFeatFilename(args))
-      scoreName = genFeats['name']
-      scoreFeats = genFeats['scoreFeats']
+      genFeat = genFeats[0]
+      scoreName = genFeat['name']
+      scoreFeats = genFeat['scoreFeats']
       #wrap genFeats in [] to match data structure in train
-      lines = self.formatLineDirect([genFeats]) 
+      lines = self.formatLineDirect([genFeat]) 
       config.printDebug(lines)
       allLines = map(lambda l: "0 " + l, lines)
       config.printDebug(allLines)

@@ -27,11 +27,13 @@ def main():
 
    genScore = sampleLoader.loadGenScore(args.input)
    genFeat = featureManager.extractGenFeat(genScore)
-   featureManager.saveJson(genFeat, config.getGenInFeatFilename(args))
+   #wrap genFeat by {} because trainFeats is {score1, score2}
+   featureManager.saveJson([genFeat], config.getGenInFeatFilename(args))
    #perfFeats = model.genPerfFeats(config.defaultGenFeatFilename, args.modelFilename)
    m = model.getModelObj()
    perfFeats = m.gen(args)
-   featureManager.saveJson(perfFeats, config.getGenOutFeatFilename(args))
+   #wrap perfFeat by {} because trainFeats is {score1, score2}
+   featureManager.saveJson([perfFeats], config.getGenOutFeatFilename(args))
 
    musicGenerator.genMusic(genScore, args)
 
