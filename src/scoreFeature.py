@@ -4,11 +4,11 @@ import config
 def cacheByName(function):
    memo = {}
    def wrapper(*args):
-      config.printDebug(args)
+      logging.printDebug(args)
       argsStr= args[0]['name']
-      config.printDebug(argsStr)
+      logging.printDebug(argsStr)
       if argsStr in memo:
-         config.printDebug("Cache HIT: " + argsStr)
+         logging.printDebug("Cache HIT: " + argsStr)
          return memo[argsStr]
       else:
          rv = function(*args)

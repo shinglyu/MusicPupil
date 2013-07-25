@@ -34,8 +34,8 @@ def applyFeats(inScore, perfFeats):
    for featName , featValue in perfFeats.items():
       applyFunc = getattr(perfFeature, 'apply'+featName)
       outScore = applyFunc(outScore, perfFeats)
-      config.printDebug(applyFunc)
-   #config.printDebug(outScore)
+      logging.printDebug(applyFunc)
+   #logging.printDebug(outScore)
    #if config.DEBUG: outScore['score'].show('text')
    return outScore
 

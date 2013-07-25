@@ -1,7 +1,7 @@
 import os.path
 
-#DEBUG = True
-DEBUG = False 
+DEBUG = True
+#DEBUG = False 
 defaultTrainSampleList= "../training_samples/trainSampleList.txt"
 unittestTrainSampleList="../training_samples/trainSampleList.txt"
 defaultGenScore=        "../testing_scores/chop_nc_phrase001"
@@ -38,12 +38,12 @@ musicOutputFormat= [ "Midi",
                    ]
 #SVM^HMM related parameters
 #svmhmm_c = None
-svmhmm_c = 50
+svmhmm_c = 500
 
-def printDebug(string):
-   if DEBUG:
-      print("[DEBUG]"),
-      print(string)
+#def printDebug(string):
+#   if DEBUG:
+#      print("[DEBUG]"),
+#      print(string)
 
 def sanitizeDirPath(dirPath):
    if not (dirPath.endswith("/")):

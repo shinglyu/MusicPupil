@@ -40,16 +40,16 @@ def collectFeats(trainFeats, featType):
    #     feat2name: [1,2,3....2 3 4,...3 9 4,...],
    #  }
    #
-   config.printDebug("trainFeats: ")
-   config.printDebug(trainFeats)
+   logging.printDebug("trainFeats: ")
+   logging.printDebug(trainFeats)
    collectedFeats = {}
    for featName in getattr(config, featType+'List'):
       collectedFeats[featName] = []
-      config.printDebug(trainFeats)
+      logging.printDebug(trainFeats)
       for score in trainFeats:
-         #config.printDebug(score)
-         #config.printDebug("featName: " + featName)
-         #config.printDebug("featType: " + featType)
+         #logging.printDebug(score)
+         #logging.printDebug("featName: " + featName)
+         #logging.printDebug("featType: " + featType)
          collectedFeats[featName].extend(score[featType][featName])
    return collectedFeats
 
@@ -82,7 +82,7 @@ class modelMultiLinearRegress(model):
       formula = 'cbind(' + ','.join(config.perfFeatsList) +')'
       formula += '~'
       formula += '*'.join(config.scoreFeatsList)
-      config.printDebug(formula)
+      logging.printDebug(formula)
       r.assign('fstr', formula)
       r.assign('scoreFeats',scoreFeats)
       r.assign('perfFeats',perfFeats)
@@ -101,7 +101,7 @@ class modelMultiLinearRegress(model):
    def gen(self, genFeatFilename, modelFilename):
       genFeats = featureManager.loadJson(genFeatFilename)
       scoreFeats = genFeats['scoreFeats']
-      config.printDebug(scoreFeats)
+      logging.printDebug(scoreFeats)
       r.assign('scoreFeats',scoreFeats)
       r.assign('modelFilename',modelFilename)
       r('scoreFeats <- data.frame(scoreFeats)')
@@ -112,9 +112,9 @@ class modelMultiLinearRegress(model):
       perfFeats = r('perfFeats<-genMultiLinearRegress(scoreFeats, modelFilename)')
       if config.DEBUG: r('str(perfFeats)')
       #workaround: if only one perfFeat is used. predict will return a bad format data.frame without proper perfFeatName
-      config.printDebug('PerfFeatures from genModel')
-      config.printDebug(perfFeats)
-      config.printDebug(perfFeats.items())
+      logging.printDebug('PerfFeatures from genModel')
+      logging.printDebug(perfFeats)
+      logging.printDebug(perfFeats.items())
       if len(perfFeats) == 1:
          newPerfFeats = {} 
          for key, val in perfFeats.items(): 
@@ -133,12 +133,12 @@ class modelSVMStruct(model):
       #i.e from one feature one row to one note one row
       lines = []
       feats = zip(*scoreFeats.values()) # each elem is a note [feat1, feat2, ...]]
-      #config.printDebug(feats)
+      #logging.printDebug(feats)
       for note in feats:
          line = ""
          for i in range(0, len(note)):
             line += "{0}:{1} ".format(i+1, note[i]);
-            #config.printDebug(line)
+            #logging.printDebug(line)
          lines.append(line)
       return lines
 
@@ -218,7 +218,7 @@ class modelSVMStruct(model):
 
       trainFeats = featureManager.loadJson(config.getTrainInFeatFilename(args))
       perfFeats = collectPerfFeats(trainFeats)
-      config.printDebug(perfFeats)
+      logging.printDebug(perfFeats)
       #for each perfFeature, a svmFeatFilename (quantized feat for svm^hmm)
       #and singleModelFilename (model file for svm^hmm) will be saved
       #scoreFeatLines = self.formatLine(scoreFeats) 
@@ -229,9 +229,9 @@ class modelSVMStruct(model):
          q = quantizer.getQuantizerObj(self.getQuantizeFilename(args, pkey))
          quantizedVal = q.quantize(pval)
          lines = zip(map(str, quantizedVal), scoreFeatLines) 
-         config.printDebug(lines)
+         logging.printDebug(lines)
          allLines = map(lambda l:" ".join(l), lines)
-         config.printDebug(allLines)
+         logging.printDebug(allLines)
 
          svmFeatFilename = self.getTrainInputFilename(args, pkey)
          with open(svmFeatFilename, 'w') as f:
@@ -246,7 +246,7 @@ class modelSVMStruct(model):
          singleModelFilename = self.getSingleModelFilename(args,pkey)
          cmd.append(singleModelFilename)
 
-         config.printDebug(" ".join(cmd))
+         logging.printDebug(" ".join(cmd))
          subprocess.call(" ".join(cmd), shell=True)
 
    def gen(self, args):
@@ -256,9 +256,9 @@ class modelSVMStruct(model):
       scoreFeats = genFeat['scoreFeats']
       #wrap genFeats in [] to match data structure in train
       lines = self.formatLineDirect([genFeat]) 
-      config.printDebug(lines)
+      logging.printDebug(lines)
       allLines = map(lambda l: "0 " + l, lines)
-      config.printDebug(allLines)
+      logging.printDebug(allLines)
 
       #TODO: collect filenames
 
@@ -275,7 +275,7 @@ class modelSVMStruct(model):
          perfFeatFilename= self.getGenOutputFilename(args, featName)
          cmd.append(perfFeatFilename)
 
-         config.printDebug(" ".join(cmd))
+         logging.printDebug(" ".join(cmd))
          subprocess.call(" ".join(cmd), shell=True)
 
          #TODO: read all perfFeatFilename, transform to dict and return 
@@ -293,7 +293,7 @@ class modelSVMStruct(model):
          #feat = map(float, lines)
          perfFeats[featName]=realVals
 
-      config.printDebug(perfFeats)
+      logging.printDebug(perfFeats)
       return featureManager.formatFeatFile(scoreName, {}, perfFeats)
       #return perfFeats
 

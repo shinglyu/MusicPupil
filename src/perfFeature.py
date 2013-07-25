@@ -4,11 +4,11 @@ import config
 def cacheByName(function):
    memo = {}
    def wrapper(*args):
-      config.printDebug(args)
+      logging.printDebug(args)
       argsStr= args[0]['name']
-      config.printDebug(argsStr)
+      logging.printDebug(argsStr)
       if argsStr in memo:
-         config.printDebug("Cache HIT: " + argsStr)
+         logging.printDebug("Cache HIT: " + argsStr)
          return memo[argsStr]
       else:
          rv = function(*args)
@@ -42,8 +42,8 @@ def extractDurationPercent(sample):
    perfNotes = sample['perf'].flat.notes
    if config.DEBUG:
       for s, p in zip(scoreNotes, perfNotes):
-         config.printDebug('s duration: '+ str(s.duration.quarterLength))
-         config.printDebug('p duration: '+ str(p.duration.quarterLength))
+         logging.printDebug('s duration: '+ str(s.duration.quarterLength))
+         logging.printDebug('p duration: '+ str(p.duration.quarterLength))
    # maybe we should use (p-s)/s
    durationPercents = [p.duration.quarterLength / s.duration.quarterLength 
                        for s, p in zip(scoreNotes, perfNotes)]
@@ -55,7 +55,7 @@ def applyDurationPercent(inSample, perfFeats):
    durationPercents = perfFeats['DurationPercent']
    for durationPercent, note in zip(durationPercents, notes):
       outDuration = note.duration.quarterLength * durationPercent
-      config.printDebug(outDuration)
+      logging.printDebug(outDuration)
       note.duration =  duration.Duration(outDuration)
    outSample = { 'name': inSample['name'], 
                  'meta':inSample['meta'],

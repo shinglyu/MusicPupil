@@ -31,7 +31,7 @@ def main():
          cmd.append(args.modelFilename)
          cmd.append(args.outputDir)
 
-         config.printDebug(" ".join(cmd))
+         logging.printDebug(" ".join(cmd))
          subprocess.call(" ".join(cmd), shell=True)
 
 if __name__ == "__main__":

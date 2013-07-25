@@ -25,7 +25,7 @@ def genMusic(genScore, args):
 def outputMidi(outSamp, args):
    outputFilename = config.sanitizeDirPath(args.outputDir) 
    outputFilename += config.getGenSampleName(args.input) + '.expr.mid'
-   config.printDebug(outputFilename)
+   logging.printDebug(outputFilename)
    outScore = outSamp['score']
    outScore.write('midi', outputFilename)
    #midifile = music21.midi.translate.streamToMidiFile(outScore)
