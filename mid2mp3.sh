@@ -14,5 +14,5 @@ do
    #                        |
    #                        +-> lame   -> mp3
    #timidity $midName -Ow -o - |tee >(oggenc - -o $oggName) |lame -h -f -b 64 - $mp3Name
-   timidity $midName -Ow -o - |lame -h -f -b 64 - $mp3Name
+   timidity $midName -Ow -o - |lame -h -f -b 128 - $mp3Name
 done

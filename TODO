@@ -4,3 +4,11 @@ add tests
 makefile/test script
 README
 try structural svm/crf
+
+20130723
+Add cache for model
+Re-consider cache 
+Add notify-send for experiments
+Add time in log
+Enable lab computer
+

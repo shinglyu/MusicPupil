@@ -238,7 +238,10 @@ class modelSVMStruct(model):
             f.writelines(map(lambda x:x+"\n", allLines))
 
          cmd = [self.trainBinPath]
-         cmd.append("-c 0.01")
+         if (config.svmhmm_c != None):
+             cmd.append("-c " + str(config.svmhmm_c))
+         else:
+             cmd.append("-c 0.01")
          cmd.append(svmFeatFilename)
          singleModelFilename = self.getSingleModelFilename(args,pkey)
          cmd.append(singleModelFilename)
