@@ -13,6 +13,7 @@ gen
 
 import featureManager
 import model 
+import logging
 
 import os 
 import fnmatch 

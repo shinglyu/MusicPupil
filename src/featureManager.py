@@ -1,6 +1,8 @@
 import config
 import scoreFeature
 import perfFeature 
+import logging
+
 #import json
 import simplejson
 
@@ -34,8 +36,8 @@ def applyFeats(inScore, perfFeats):
    for featName , featValue in perfFeats.items():
       applyFunc = getattr(perfFeature, 'apply'+featName)
       outScore = applyFunc(outScore, perfFeats)
-      logging.printDebug(applyFunc)
-   #logging.printDebug(outScore)
+      #logging.printDebug(applyFunc)
+   ##logging.printDebug(outScore)
    #if config.DEBUG: outScore['score'].show('text')
    return outScore
 

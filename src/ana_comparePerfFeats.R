@@ -1,4 +1,5 @@
-useSvg = TRUE
+#usage Rscript <this.R> <output dir> <graph title>
+useSvg =FALSE 
 args <- commandArgs(trailingOnly=TRUE)
 print(args)
 
@@ -11,7 +12,7 @@ outFilename = paste("comparePerfFeats", mainTitle, sep=".")
 perf <- read.table(paste(dir, inFilename, ".txt", sep=""), header=TRUE, sep="\t", row.names=NULL)
 
 perf$VelocityMidiScale <- as.numeric(perf$VelocityMidiScale)	
-perf$OnsetDiffQNote	<- as.numeric(perf$OnsetDiffQNote)
+perf$OnsetDiffQNote4	<- as.numeric(perf$OnsetDiffQNote4)
 perf$DurationPercent <- as.numeric(perf$DurationPercent)
 
 
@@ -41,7 +42,9 @@ genPlot <- function() {
 if(useSvg){
     svg(paste(dir, outFilename , ".svg", sep=""))
 }else{
-    pdf(paste(dir, outFilename , ".pdf", sep=""))
+    #pdf(paste(dir, outFilename , ".pdf", sep=""))
+    setEPS()
+    postscript(paste(dir, outFilename , ".eps", sep=""))
 }
 genPlot()
 

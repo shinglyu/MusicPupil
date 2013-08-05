@@ -1,14 +1,16 @@
 import cPickle
+
 import config 
+import logging
 
 def cacheByName(function):
    memo = {}
    def wrapper(*args):
-      logging.printDebug(args)
+      #logging.printDebug(args)
       argsStr= args[0]['name']
-      logging.printDebug(argsStr)
+      #logging.printDebug(argsStr)
       if argsStr in memo:
-         logging.printDebug("Cache HIT: " + argsStr)
+         #logging.printDebug("Cache HIT: " + argsStr)
          return memo[argsStr]
       else:
          rv = function(*args)

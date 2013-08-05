@@ -21,10 +21,10 @@ scoreFeatsList = [ "PosInPhrasePercent",
                    "DurationRatioPrevPercent", ]
 
 perfFeatsList = [ 
-                  "OnsetDiffQNote",
+                  #"OnsetDiffQNote",
                   #"OnsetDiffQNote1",
                   #"OnsetDiffQNote2",
-                  #"OnsetDiffQNote3",
+                  "OnsetDiffQNote3",
                   #"OnsetDiffQNote4",
                   "DurationPercent",
                   "VelocityMidiScale",

@@ -6,6 +6,7 @@ import subprocess
 
 import sampleLoader
 import config 
+import logging
 
 def main():
    parser = argparse.ArgumentParser()
@@ -31,7 +32,7 @@ def main():
          cmd.append(args.modelFilename)
          cmd.append(args.outputDir)
 
-         logging.printDebug(" ".join(cmd))
+         #logging.printDebug(" ".join(cmd))
          subprocess.call(" ".join(cmd), shell=True)
 
 if __name__ == "__main__":
