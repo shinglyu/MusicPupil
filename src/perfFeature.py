@@ -112,7 +112,7 @@ def extractOnsetDiffQNote1(sample):
 
 @cacheByName
 def applyOnsetDiffQNote1(inSample, perfFeats):
-   return (applyOnsetDiffQNote)
+   return (applyOnsetDiffQNoteDelegate(inSample, perfFeats, '1'))
 
 @cacheByName
 def extractTempoRatio2(sample):
@@ -154,7 +154,7 @@ def extractOnsetDiffQNote2(sample):
 
 @cacheByName
 def applyOnsetDiffQNote2(inSample, perfFeats):
-   return (applyOnsetDiffQNote)
+   return (applyOnsetDiffQNoteDelegate(inSample, perfFeats, '2'))
 
 @cacheByName
 def extractTempoRatio3(sample):
@@ -197,7 +197,7 @@ def extractOnsetDiffQNote3(sample):
 
 @cacheByName
 def applyOnsetDiffQNote3(inSample, perfFeats):
-   return (applyOnsetDiffQNote)
+   return (applyOnsetDiffQNoteDelegate(inSample, perfFeats, '3'))
 
 @cacheByName
 def extractTempoRatio4(sample):
@@ -241,8 +241,22 @@ def extractOnsetDiffQNote4(sample):
 
 @cacheByName
 def applyOnsetDiffQNote4(inSample, perfFeats):
-   return (applyOnsetDiffQNote)
+   return (applyOnsetDiffQNoteDelegate(inSample, perfFeats, '4'))
 
+@cacheByName
+def applyOnsetDiffQNoteDelegate(inSample, perfFeats, no):
+   #for onsetDiffQnote1~4 delegation, should be synced with applyOnsetDiffQNote()
+   offsetDiffs = perfFeats['OnsetDiffQNote' + no]
+   notes = inSample['score'].flat.notes
+   outScore= stream.Stream()
+   for offsetDiff, note in zip(offsetDiffs, notes):
+      outOffset = max(0, note.offset + offsetDiff)
+      outScore.insert(outOffset, note)
+   outSample = { 'name': inSample['name'], 'meta':inSample['meta'],
+                 'score': outScore
+               }
+   return outSample
+   
 @cacheByName
 def applyOnsetDiffQNote(inSample, perfFeats):
    offsetDiffs = perfFeats['OnsetDiffQNote']

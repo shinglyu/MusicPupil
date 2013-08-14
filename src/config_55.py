@@ -43,7 +43,7 @@ musicOutputFormat= [ "Midi",
                    ]
 #SVM^HMM related parameters
 #svmhmm_c = None
-svmhmm_c = 100
+svmhmm_c = 10
 
 #def printDebug(string):
 #   if DEBUG:

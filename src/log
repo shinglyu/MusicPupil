@@ -1,0 +1,42 @@
+Reading model...done.
+Reading test examples... 1 examples, 16 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.11
+Average loss on test set: 16.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000
+Reading model...done.
+Reading test examples... 1 examples, 16 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.13
+Average loss on test set: 16.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000
+Reading model...done.
+Reading test examples... 1 examples, 16 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.09
+Average loss on test set: 16.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000
+Reading model...done.
+Reading test examples... 1 examples, 14 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.10
+Average loss on test set: 14.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000
+Reading model...done.
+Reading test examples... 1 examples, 14 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.13
+Average loss on test set: 14.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000
+Reading model...done.
+Reading test examples... 1 examples, 14 tokens, 9 features, 0 classes... done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.08
+Average loss on test set: 14.0000
+Zero/one-error on test set: 100.00% (0 correct, 1 incorrect, 1 total)
+Average loss per token: 1.0000

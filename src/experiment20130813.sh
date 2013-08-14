@@ -1,9 +1,9 @@
 #!/bin/sh
 
-date="20130803"
-from=41
-to=44
-#Objective: Just to try remote desktop running
+date="20130812"
+from=51
+to=59
+#Objective: Test svm_hmm parameter
 
 #for i in 21 22 23 24 25 26 27 
 for i in $(seq $from $to)
@@ -22,7 +22,7 @@ do
     for k in 1 2 3 4 5
     #for k in 0 
     do
-        #./musicPupilTrain.py ../training_samples/trainList0$k.txt $dir |tee $dir/$date\_$i\_train.log 
+        ./musicPupilTrain.py ../training_samples/trainList0$k.txt $dir |tee $dir/$date\_$i\_train.log 
 
         ./musicPupilGenBatch.py ../testing_scores/genList0$k.txt $dir/trainList0$k.modelSVMStruct.model $dir |tee $dir/$date\_$i\_gen.log 
     done
